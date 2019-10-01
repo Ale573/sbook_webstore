@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Philosopher');
+//App CSS
+.app {
+    background-color: #ffffff;
+}
+
+//Header CSS 
+.main_header {
+    height: 140px;
+    background-image: url("../images/banner.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .logo{
+        float: left;
+        margin-left: 5px;
+        margin-top: 2px;
+    }
+    .header_title {
+        width: 700px;
+        float: left;
+        margin-left: 5px;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 4em;
+        color: #ffffff;
+    }
+}
+//Home CSS
+
+//Login and Register Component CSS
+
