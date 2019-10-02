@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 export class Login extends Component {
     render() {
         return (
-            <div className="login_container">
+            <div className="form_container">
                 <form>
-                    <label>Email</label>
-                    <input 
+                    <label className="label_text">Email</label>
+                    <input
+                        className="input_box" 
                         type="text" 
                         name="email"
                         autoCorrect="off"
@@ -14,8 +15,9 @@ export class Login extends Component {
                         spellCheck="off" 
                     />
 
-                    <label>Password</label>
+                    <label className="label_text">Password</label>
                     <input
+                        className="input_box" 
                         type="text" 
                         name="password"
                         autoCorrect="off"
@@ -23,7 +25,8 @@ export class Login extends Component {
                         spellCheck="off" 
                     />
 
-                    <button 
+                    <button
+                        className="submit_button" 
                         type="submit">
                             Login
                     </button>

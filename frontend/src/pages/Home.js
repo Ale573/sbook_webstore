@@ -4,16 +4,42 @@ import Login from '../components/Login';
 import Register from '../components/Register';
 
 export class Home extends Component {
+    state = {
+        login: true,
+        register: false
+    }
+
+    changeLogin = () => {
+        this.setState({
+            login: true,
+            register: false
+        })
+    }
+
+    changeRegister = () => {
+        this.setState({
+            login: false,
+            register: true
+        })
+    }
 
     render() {
         return (
             <div className="home">   
 
                 <div className="login_register_container">
-                   <h2>Login</h2>
-                    <Login />
-                   <h2>Register</h2>
-                   <Register />
+                    <div className="title_container">
+                        <h2 className="section_title" onClick={this.changeLogin}>Login</h2>
+                        <h2 className="section_title" onClick={this.changeRegister}>Register</h2>
+                    </div>
+
+                    <div className="component_container">
+                        {this.state.login === true ? 
+                            <Login />
+                        :
+                            <Register />
+                        }
+                    </div>
                 </div>
 
                 <article className="about_container">

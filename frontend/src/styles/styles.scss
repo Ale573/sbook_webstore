@@ -2,20 +2,24 @@
 //App CSS
 .app {
     background-color: #ffffff;
+    max-width: 2180px;
+    margin-left: auto;
+    margin-right: auto;
+
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 //Header CSS 
 .main_header {
-    height: 140px;
-    background-image: url("../images/banner.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+    height: 145px;
+    background-color: rgb(221, 240, 226);
 
     .logo{
         float: left;
         margin-left: 5px;
-        margin-top: 2px;
+        margin-top: 5px;
     }
+
     .header_title {
         width: 700px;
         float: left;
@@ -28,6 +32,82 @@
     }
 }
 //Home CSS
+.login_register_container {
+    background-image: url("../images/background.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+
+    height: 950px;
+    padding: 1px;
+
+    .title_container {
+        float: right;
+        margin: 80px 300px 40px 0px;
+
+        border: 1px solid black;
+
+        .section_title {
+            font-family: 'Philosopher', sans-serif;
+            font-size: 2.8em;
+
+            float: left;
+            margin: 50px;
+            padding: 20px;
+
+            cursor: pointer;
+    
+            border: 1px solid black;
+        }
+    }
+
+    .component_container {
+        clear: both;
+        float: right;
+
+        margin: 10px 300px 50px 0px;
+    }
+    
+}
 
 //Login and Register Component CSS
+.form_container {
 
+    margin-right: 50px;
+
+    .label_text {
+        display: block;
+        margin: 10px 0px;
+        font-size: 1.8em;
+    }
+
+    .input_box {
+        display: block;
+        margin: 10px 0px;
+        width: 450px;
+        height: 50px;
+        border: solid 1px rgb(25, 104, 46);
+        border-radius: 10px;
+        box-shadow: 1px 3px 11px rgb(221, 240, 226);
+        font-size: 1.4em;
+    }
+
+    .submit_button {
+        float: right;
+        margin: 20px 0px;
+        border: solid 1px #117c20;
+        background-color: #117c20;
+        color: white;
+        border-radius: 8px;
+        box-shadow: 1px 1px 6px black;
+        padding: 18px 32px;
+        font-size: 1.5em;
+        cursor: pointer;
+    }
+    
+    .submit_button:hover {
+        background-color:  #105c1b;
+        color: white;
+        border: inset 1.5px black;
+    }
+}

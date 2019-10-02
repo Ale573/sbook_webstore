@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 export class Register extends Component {
     render() {
         return (
-            <div>
-                <form>
-                    <label>Email</label>
+            <div className="form_container">
+                <form > 
+                    <label className="label_text">Email</label>
                     <input 
+                        className="input_box"
                         type="text" 
                         name="email"
                         autoCorrect="off"
@@ -14,8 +15,9 @@ export class Register extends Component {
                         spellCheck="off" 
                     />
 
-                    <label>Password</label>
+                    <label className="label_text">Password</label>
                     <input
+                        className="input_box"
                         type="text" 
                         name="password"
                         autoCorrect="off"
@@ -23,8 +25,9 @@ export class Register extends Component {
                         spellCheck="off" 
                     />
 
-                    <label>Confirm Password</label>
+                    <label className="label_text">Confirm Password</label>
                     <input
+                        className="input_box"
                         type="text" 
                         name="confirm_password"
                         autoCorrect="off"
@@ -32,9 +35,10 @@ export class Register extends Component {
                         spellCheck="off" 
                     />
 
-                    <button 
+                    <button
+                        className="submit_button" 
                         type="submit">
-                            Login
+                            Register
                     </button>
                 </form>
             </div>
