@@ -48,6 +48,18 @@
   float: left;
   margin: 50px;
   padding: 20px;
+  color: #3d3d3d;
+  cursor: pointer;
+}
+
+.login_register_container .title_container .section_title_active {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 2.8em;
+  float: left;
+  margin: 50px;
+  padding: 20px;
+  color: #105c1b;
+  text-decoration: underline;
   cursor: pointer;
 }
 
@@ -72,9 +84,9 @@
   margin: 10px 0px;
   width: 450px;
   height: 50px;
-  border: solid 1px #19682e;
+  border: solid 1px #105c1b;
   border-radius: 10px;
-  box-shadow: 1px 3px 11px #ddf0e2;
+  box-shadow: 1px 3px 11px #1a912c;
   font-size: 1.4em;
 }
 

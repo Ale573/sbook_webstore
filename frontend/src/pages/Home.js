@@ -6,7 +6,7 @@ import Register from '../components/Register';
 export class Home extends Component {
     state = {
         login: true,
-        register: false
+        register: false,
     }
 
     changeLogin = () => {
@@ -29,8 +29,8 @@ export class Home extends Component {
 
                 <div className="login_register_container">
                     <div className="title_container">
-                        <h2 className="section_title" onClick={this.changeLogin}>Login</h2>
-                        <h2 className="section_title" onClick={this.changeRegister}>Register</h2>
+                        <h2 className={this.state.login ? "section_title_active":"section_title"} onClick={this.changeLogin}>Login</h2>
+                        <h2 className={this.state.register ? "section_title_active":"section_title"} onClick={this.changeRegister}>Register</h2>
                     </div>
 
                     <div className="component_container">
