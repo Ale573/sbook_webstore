@@ -40,7 +40,7 @@ export class Register extends Component {
                     password: this.state.password
                   }
     
-                  //TODO
+                  //TODO - Axios Connection
                 }
                 else {
                   this.setState({
