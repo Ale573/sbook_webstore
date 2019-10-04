@@ -28,18 +28,32 @@
   text-shadow: 1px 3px 11px #000000;
 }
 
-.login_register_container {
+.home {
+  position: relative;
+}
+
+.login_register_background {
   background-image: url("../images/background.jpg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-attachment: scroll;
   height: 950px;
   padding: 1px;
+  opacity: 0.7;
+}
+
+.login_register_container {
+  height: 950px;
+  padding: 1px;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .login_register_container .title_container {
   float: right;
   margin: 120px 310px 0px 0px;
+  z-index: 1;
 }
 
 .login_register_container .title_container .section_title {
@@ -86,7 +100,7 @@
   height: 50px;
   border: solid 1px #105c1b;
   border-radius: 10px;
-  box-shadow: 1px 3px 11px #1a912c;
+  box-shadow: 1px 1px 8px #1a912c;
   font-size: 1.4em;
 }
 
@@ -107,4 +121,17 @@
   background-color: #105c1b;
   color: white;
   border: inset 1.5px black;
+}
+
+.form_container .error_message {
+  display: none;
+}
+
+.form_container .error_message_active {
+  display: block;
+  color: #202020;
+  background-color: #ffffff80;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.4em;
 }
