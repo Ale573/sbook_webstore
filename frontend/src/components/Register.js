@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export class Register extends Component {
 
@@ -30,27 +31,35 @@ export class Register extends Component {
 
       onSubmit = (e) => {
 
-        if(this.state.password.length >= 8) {
-            if(this.state.password === this.state.confirm_password) { 
-      
-              const newUser = {
-                email: this.state.email,
-                password: this.state.password
+        if(this.state.email.length > 0 && this.state.password.length > 0 && this.state.confirm_password.length > 0) {
+            if(this.state.password.length >= 8) {
+                if(this.state.password === this.state.confirm_password) { 
+          
+                  const newUser = {
+                    email: this.state.email,
+                    password: this.state.password
+                  }
+    
+                  //TODO
+                }
+                else {
+                  this.setState({
+                    error: true,
+                    message: "Passwords are not equal."
+                  })
+                }
               }
-
-
-            }
             else {
-              this.setState({
-                error: true,
-                message: "Passwords are not equal."
-              })
+                this.setState({
+                    error: true,
+                    message: "Password must have at least 8 characters."
+                })
             }
-          }
+        }
         else {
             this.setState({
                 error: true,
-                message: "Password must have at least 8 characters."
+                message: "All fields are requiered."
             })
         }
       }
@@ -62,11 +71,8 @@ export class Register extends Component {
                     <label className="label_text">Email</label>
                     <input 
                         className="input_box"
-                        type="text" 
+                        type="email" 
                         name="email"
-                        autoCorrect="off"
-                        autoCapitalize="off"
-                        spellCheck="off"
                         onChange={this.emailChange}
                         value={this.state.email} 
                     />
@@ -101,6 +107,12 @@ export class Register extends Component {
             </div>
         )
     }
+}
+
+Register.propTypes = {
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    confirm_password: PropTypes.string.isRequired,
 }
 
 export default Register;
