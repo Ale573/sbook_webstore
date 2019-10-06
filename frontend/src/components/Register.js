@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 export class Register extends Component {
 
@@ -107,12 +106,6 @@ export class Register extends Component {
             </div>
         )
     }
-}
-
-Register.propTypes = {
-    email: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-    confirm_password: PropTypes.string.isRequired,
 }
 
 export default Register;

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 export class Login extends Component {
 
@@ -69,11 +68,6 @@ export class Login extends Component {
             </div>
         )
     }
-}
-
-Login.propTypes = {
-    email: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
 }
 
 export default Login;
