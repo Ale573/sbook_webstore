@@ -36,7 +36,7 @@
     position: relative;
 }
 
-.login_register_background {
+.lr_background {
     background-image: url("../images/background.jpg");
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -47,7 +47,7 @@
     opacity: 0.7;
 }
 
-.login_register_container {
+.lr_container {
     height: 950px;
     padding: 1px;
     position: absolute;
@@ -89,7 +89,7 @@
         }
     }
 
-    .component_container {
+    .lr_component_container {
         clear: both;
         float: right;
 

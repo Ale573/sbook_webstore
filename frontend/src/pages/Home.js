@@ -26,15 +26,14 @@ export class Home extends Component {
     render() {
         return (
             <div className="home">
-
-                <div className="login_register_background"></div>
-                <div className="login_register_container">
+                <div className="lr_background"></div>
+                <div className="lr_container">
                     <div className="title_container">
                         <h2 className={this.state.login ? "section_title_active":"section_title"} onClick={this.changeLogin}>Login</h2>
                         <h2 className={this.state.register ? "section_title_active":"section_title"} onClick={this.changeRegister}>Register</h2>
                     </div>
 
-                    <div className="component_container">
+                    <div className="lr_component_container">
                         {this.state.login === true ? 
                             <Login />
                         :
