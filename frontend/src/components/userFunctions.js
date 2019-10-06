@@ -18,7 +18,7 @@ export const register = newUser => {
 export const login = user => {
     return axios
         .post('http://jsonplaceholder.typicode.com/users', {
-            username: user.username,
+            email: user.email,
             password: user.password
         })
         .then(response => {
