@@ -4,6 +4,7 @@ import './styles/styles.css';
 
 import Home from './pages/Home';
 import Header from './components/Header';
+import Dash from './pages/Dash';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
             <Header />  
             <Switch>
               <Route path="/" exact component={Home}/>
+              <Route path="/dash" component={Dash}/>
             </Switch>
         </div>
       </div>

@@ -23,6 +23,17 @@ export class Home extends Component {
         })
     }
 
+    successfulLogin = () => {
+        this.props.history.push('/dash');
+    }
+
+    successfulRegister = () => {
+        this.setState({
+            login: true,
+            register: false
+        });
+    }
+
     render() {
         return (
             <div className="home">
@@ -35,9 +46,9 @@ export class Home extends Component {
 
                     <div className="lr_component_container">
                         {this.state.login === true ? 
-                            <Login />
+                            <Login success={this.successfulLogin}/>
                         :
-                            <Register />
+                            <Register success={this.successfulRegister}/>
                         }
                     </div>
                 </div>

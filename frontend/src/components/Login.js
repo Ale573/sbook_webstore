@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { login } from './userFunctions';
 
 export class Login extends Component {
 
@@ -6,7 +7,8 @@ export class Login extends Component {
         email: '',
         password: '',
         error: false,
-        message: ''
+        message: '',
+        loading: false
     }
 
     emailChange = (e) => {
@@ -21,15 +23,45 @@ export class Login extends Component {
         })
       }
 
+      fetchData = () => {
+        this.setState({
+          loading: true
+        })
+
+        setTimeout(() => {
+          this.setState({
+            loading: false
+          })
+        }, 3000)
+      }
+
       onSubmit = (e) => {
+
         if(this.state.email.length > 0 && this.state.password.length > 0) {  
-            
-            //TODO - Axios Connection
+
+            const user = {
+                username: this.state.username,
+                password: this.state.password
+            }
+
+            this.fetchData();
+
+            login(user).then(res => {
+                if(!res.error) {
+                  this.props.success();
+                }
+                else {
+                  this.setState({
+                    error: true,
+                    message: res["error"]
+                  })
+                }
+            })
         }
         else {
             this.setState({
                 error: true,
-                message: "Invalid username or password."
+                message: "All fields are requiered."
             })
         }
       }
@@ -50,7 +82,7 @@ export class Login extends Component {
                     <label className="label_text">Password</label>
                     <input
                         className="input_box" 
-                        type="text" 
+                        type="password" 
                         name="password"
                         onChange={this.passwordChange}
                         value={this.state.password} 
@@ -58,12 +90,21 @@ export class Login extends Component {
 
                     <p className={this.state.error ? "error_message_active":"error_message"}>{this.state.message}</p>
 
-                    <button
-                        className="submit_button" 
+                    {this.state.loading ? 
+                      <button
+                        className="submit_button"
+                        type="button"
+                        onClick={this.onSubmit}> 
+                        Loading
+                      </button>
+                    :
+                      <button
+                        className="submit_button"
                         type="button"
                         onClick={this.onSubmit}>
-                            Login
-                    </button>
+                          Login
+                      </button>
+                    }
                 </form>
             </div>
         )

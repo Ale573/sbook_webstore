@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { register } from './userFunctions';
 
 export class Register extends Component {
 
@@ -7,7 +8,8 @@ export class Register extends Component {
         password: '',
         confirm_password: '',
         error: false,
-        message: ''
+        message: '', 
+        loading: false
     }
 
     emailChange = (e) => {
@@ -28,6 +30,18 @@ export class Register extends Component {
         })
       }
 
+      fetchData = () => {
+        this.setState({
+          loading: true
+        })
+
+        setTimeout(() => {
+          this.setState({
+            loading: false
+          })
+        }, 3000)
+      }
+
       onSubmit = (e) => {
 
         if(this.state.email.length > 0 && this.state.password.length > 0 && this.state.confirm_password.length > 0) {
@@ -38,8 +52,13 @@ export class Register extends Component {
                     email: this.state.email,
                     password: this.state.password
                   }
+
+                  this.fetchData();
     
-                  //TODO - Axios Connection
+                  register(newUser).then(res => {
+                    this.props.success();
+                  })
+
                 }
                 else {
                   this.setState({
@@ -96,12 +115,21 @@ export class Register extends Component {
 
                     <p className={this.state.error ? "error_message_active":"error_message"}>{this.state.message}</p>
 
-                    <button
-                        className="submit_button" 
+                    {this.state.loading ? 
+                      <button
+                        className="submit_button"
+                        type="button"
+                        onClick={this.onSubmit}> 
+                        Loading
+                      </button>
+                    :
+                      <button
+                        className="submit_button"
                         type="button"
                         onClick={this.onSubmit}>
-                            Register
-                    </button>
+                          Register
+                      </button>
+                    }
                 </form>
             </div>
         )
