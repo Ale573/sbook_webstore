@@ -2,10 +2,16 @@ import React, { Component } from 'react'
 import Cover from '../images/booktest.jpg'
 import Book from '../components/Book'
 
-export class Dash extends Component {
-    constructor(props){
+export class Dash extends Component {       
+                
+    constructor(props) {
         super(props)
-        this.state={
+
+        this.state = {
+            id: '',
+            username: '',
+            email: '', 
+
             books:[
                 {
                     id: '0',
@@ -34,10 +40,18 @@ export class Dash extends Component {
             ]
         }
     }
+
+    componentDidMount() {
+        const token = localStorage.getItem('usertoken')
+        this.setState({
+            username: token
+        })
+    }
+
     render() {
         return (
-            <div>                   
-                
+            <div>
+                <h1>Welcome {this.state.username} to your Dash!</h1>
             </div>
         )
     }

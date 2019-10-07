@@ -30,7 +30,7 @@ export class Home extends Component {
     successfulRegister = () => {
         this.setState({
             login: true,
-            register: false
+            register: false,
         });
     }
 

@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
+import { login } from './userFunctions';
+import Auth from './Auth';
 
 export class Login extends Component {
 
-    state = {
-        email: '',
-        password: '',
-        error: false,
-        message: '',
-        loading: false,
+  constructor(props) {
+    super(props);
 
-
-        //Test login user
-        test_email: 'ale@gmail.com',
-        test_password: 'ale'
+    this.state = {
+      email: '',
+      password: '',
+      error: false,
+      message: '',
+      loading: false,
     }
+  }
 
     emailChange = (e) => {
         this.setState ({
@@ -41,19 +42,26 @@ export class Login extends Component {
 
       onSubmit = (e) => {
 
+        this.fetchData();
+
         if(this.state.email.length > 0 && this.state.password.length > 0) {  
 
-          if(this.state.email === this.state.test_email && this.state.password === this.state.test_password) {
-            this.fetchData();
-            this.props.success();
-          }
-          else {
-            this.setState({
-              error: true,
-              message: "Invalid email or password."
-            })
+          const user = {
+            email: this.state.email,
+            password: this.state.password
           }
 
+          login(user).then(res => {
+            if(Auth.getToken()) {       
+              this.props.success();
+            }
+            else {
+              this.setState({
+                error: true,
+                message: "Invalid email or password."
+              })
+            }
+          })
         }
         else {
             this.setState({
