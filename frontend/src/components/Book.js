@@ -1,7 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-export class Book extends Component {constructor(props){
+export class Book extends Component {
+    constructor(props){
     super(props)
+
     this.state={
         id: this.props[0],
         name: this.props[1],
@@ -23,4 +25,4 @@ export class Book extends Component {constructor(props){
     }
 }
 
-export default Book
+export default Book;

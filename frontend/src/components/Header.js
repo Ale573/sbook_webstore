@@ -27,7 +27,7 @@ export class Header extends Component {
                         <h1 className="header_title">S-Book Webstore</h1>
 
                         <button
-                            className="submit_button"
+                            className="logout_button"
                             type="button"
                             onClick={this.handleLogout}>
                             Logout

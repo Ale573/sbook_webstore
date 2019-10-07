@@ -28,6 +28,25 @@
   text-shadow: 1px 3px 11px #000000;
 }
 
+.main_header .logout_button {
+  float: right;
+  margin: 40px 30px;
+  border: solid 1px #117c20;
+  background-color: #117c20;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 1px 1px 6px black;
+  padding: 18px 32px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.main_header .logout_button:hover {
+  background-color: #105c1b;
+  color: white;
+  border: inset 1.5px black;
+}
+
 .home {
   position: relative;
 }
