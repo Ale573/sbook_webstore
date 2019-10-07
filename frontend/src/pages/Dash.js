@@ -36,17 +36,7 @@ export class Dash extends Component {
     }
     render() {
         return (
-            <div>
-                {this.state.books.map(book =>
-                   <Book
-                        {...book}
-                        key={book[id]}
-                        name={book[name]}
-                        author={book[author]}
-                        year={book[year]}>   
-                        </Book>
-                    )}
-                   
+            <div>                   
                 
             </div>
         )
