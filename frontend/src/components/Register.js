@@ -2,14 +2,18 @@ import React, { Component } from 'react';
 
 export class Register extends Component {
 
-    state = {
-        email: '',
-        password: '',
-        confirm_password: '',
-        error: false,
-        message: '', 
-        loading: false
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: '',
+      password: '',
+      confirm_password: '',
+      error: false,
+      message: '', 
+      loading: false
     }
+  }
 
     emailChange = (e) => {
         this.setState ({
@@ -54,7 +58,7 @@ export class Register extends Component {
 
                   this.fetchData();
     
-                  this.props.success();
+                  this.props.success(newUser);
 
                 }
                 else {

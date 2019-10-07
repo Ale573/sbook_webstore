@@ -2,18 +2,17 @@ import React, { Component } from 'react';
 
 export class Login extends Component {
 
-    state = {
-        email: '',
-        password: '',
-        error: false,
-        message: '',
-        loading: false,
+  constructor(props) {
+    super(props);
 
-
-        //Test login user
-        test_email: 'ale@gmail.com',
-        test_password: 'ale'
+    this.state = {
+      email: '',
+      password: '',
+      error: false,
+      message: '',
+      loading: false,
     }
+  }
 
     emailChange = (e) => {
         this.setState ({
@@ -43,7 +42,7 @@ export class Login extends Component {
 
         if(this.state.email.length > 0 && this.state.password.length > 0) {  
 
-          if(this.state.email === this.state.test_email && this.state.password === this.state.test_password) {
+          if(this.state.email === this.props.user.test_email && this.state.password === this.props.user.test_password) {
             this.fetchData();
             this.props.success();
           }
