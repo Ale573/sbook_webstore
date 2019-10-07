@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { login } from './userFunctions';
 
 export class Login extends Component {
 
@@ -8,7 +7,12 @@ export class Login extends Component {
         password: '',
         error: false,
         message: '',
-        loading: false
+        loading: false,
+
+
+        //Test login user
+        test_email: 'ale@gmail.com',
+        test_password: 'ale'
     }
 
     emailChange = (e) => {
@@ -39,24 +43,17 @@ export class Login extends Component {
 
         if(this.state.email.length > 0 && this.state.password.length > 0) {  
 
-            const user = {
-                username: this.state.username,
-                password: this.state.password
-            }
-
+          if(this.state.email === this.state.test_email && this.state.password === this.state.test_password) {
             this.fetchData();
-
-            login(user).then(res => {
-                if(!res.error) {
-                  this.props.success();
-                }
-                else {
-                  this.setState({
-                    error: true,
-                    message: res["error"]
-                  })
-                }
+            this.props.success();
+          }
+          else {
+            this.setState({
+              error: true,
+              message: "Invalid email or password."
             })
+          }
+
         }
         else {
             this.setState({

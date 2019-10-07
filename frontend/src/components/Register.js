@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { register } from './userFunctions';
 
 export class Register extends Component {
 
@@ -55,9 +54,7 @@ export class Register extends Component {
 
                   this.fetchData();
     
-                  register(newUser).then(res => {
-                    this.props.success();
-                  })
+                  this.props.success();
 
                 }
                 else {
