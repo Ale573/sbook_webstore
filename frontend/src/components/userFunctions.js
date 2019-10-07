@@ -6,25 +6,22 @@ import Auth from './Auth';
 
 export const register = newUser => {
     return axios 
-        .post('http://jsonplaceholder.typicode.com/users', {
-            email: newUser.email,
-            password: newUser.password
-        })
+        .post('http://jsonplaceholder.typicode.com/users', { newUser })
         .then(response => {
             console.log("Registered")
+            console.log(response.data)
         })
 }
 
 export const login = user => {
     return axios
-        .post('http://jsonplaceholder.typicode.com/users', {
-            email: user.email,
-            password: user.password
+        .get('http://jsonplaceholder.typicode.com/users', {
+            params: {
+                email: user.email
+            }
         })
         .then(response => {
-            console.log(response.data)
             Auth.authenticateUser(response.data)
-            return response.data
         })
         .catch(err => {
             return err

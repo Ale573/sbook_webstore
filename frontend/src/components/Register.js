@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { register } from './userFunctions';
 
 export class Register extends Component {
 
@@ -47,6 +48,8 @@ export class Register extends Component {
 
       onSubmit = (e) => {
 
+        this.fetchData();
+
         if(this.state.email.length > 0 && this.state.password.length > 0 && this.state.confirm_password.length > 0) {
             if(this.state.password.length >= 8) {
                 if(this.state.password === this.state.confirm_password) { 
@@ -56,10 +59,9 @@ export class Register extends Component {
                     password: this.state.password
                   }
 
-                  this.fetchData();
-    
-                  this.props.success(newUser);
-
+                  register(newUser).then(res => {
+                    this.props.success();
+                  })
                 }
                 else {
                   this.setState({
