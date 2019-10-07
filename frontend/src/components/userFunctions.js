@@ -21,9 +21,9 @@ export const login = user => {
             }
         })
         .then(response => {
-            Auth.authenticateUser(response.data)
+            Auth.authenticateUser(response.data[0].username) //Testing purpose
         })
-        .catch(err => {
-            return err
+        .catch(error => {
+            return error
         })
 }
