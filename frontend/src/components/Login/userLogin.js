@@ -1,17 +1,5 @@
-/* 
-    Class that controls the connection between the backend and the frontend. 
-*/
 import axios from 'axios';
-import Auth from './Auth';
-
-export const register = newUser => {
-    return axios 
-        .post('http://jsonplaceholder.typicode.com/users', { newUser })
-        .then(response => {
-            console.log("Registered")
-            console.log(response.data)
-        })
-}
+import Auth from '../Auth/Auth';
 
 export const login = user => {
     return axios

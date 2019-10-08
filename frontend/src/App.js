@@ -2,10 +2,10 @@ import React from 'react';
 import {BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import './styles/styles.css';
 
-import Home from './pages/Home';
-import Header from './components/Header';
-import Dash from './pages/Dash';
-import Auth from './components/Auth';
+import Home from './pages/Home/Home';
+import Header from './components/Header/Header';
+import Dash from './pages/Dash/Dash';
+import Auth from './components/Auth/Auth';
 
 function App() {
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../App';
-import Login from '../components/Login';
-import Register from '../components/Register';
-import Home from '../pages/Home';
-import Dash from '../pages/Dash';
+import App from './App';
+import Login from './components/Login/Login';
+import Register from './components/Register/Register';
+import Home from './pages/Home/Home';
+import Dash from './pages/Dash/Dash';
 import {withRouter} from "react-router-dom";
 
 it('renders without crashing', () => {

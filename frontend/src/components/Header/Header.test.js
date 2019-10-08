@@ -1,8 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Header from '../components/Header';
+import Header from './Header';
 import {MemoryRouter} from "react-router-dom";
-import Auth from '../components/Auth';
+import Auth from '../Auth/Auth';
 
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';

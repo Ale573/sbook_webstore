@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Login from '../components/Login';
-import Register from '../components/Register';
+import Login from '../../components/Login/Login';
+import Register from '../../components/Register/Register';
 
 export class Home extends Component {
     state = {

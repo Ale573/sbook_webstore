@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import {Link, withRouter} from 'react-router-dom';
-import Auth from '../components/Auth';
+import Auth from '../Auth/Auth';
 
-import Logo from '../images/book_icon.png';
+import Logo from './images/book_icon.png';
 
 export class Header extends Component {
 

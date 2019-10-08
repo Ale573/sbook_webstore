@@ -52,7 +52,7 @@
 }
 
 .lr_background {
-  background-image: url("../images/background.jpg");
+  background-image: url("../pages/Home/images/background.jpg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-attachment: scroll;
