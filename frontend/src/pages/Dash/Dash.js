@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Cover from './images/booktest.jpg'
-import Book from '../../components/Book'
+import Book from '../../components/Book/Book'
 
 export class Dash extends Component {       
                 
