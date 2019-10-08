@@ -173,3 +173,32 @@
         font-size: 1.4em;
     }
 }
+//Dash CSS
+.welcome_message {
+    margin-left: 30px;
+}
+
+.recommend_message {
+    margin-left: 30px;
+}
+//Book CSS
+.book_container {
+    float: left;
+    margin: 40px 65px;
+    padding: 10px;
+
+    .book_cover {
+        border-radius: 5px;
+    }
+
+    .book_name {
+        text-align: center;
+        font-size: 1.3em;
+    }
+}
+
+.book_container:hover {
+    border: 1px solid #105c1b;
+    border-radius: 10px;
+    cursor: pointer;
+}

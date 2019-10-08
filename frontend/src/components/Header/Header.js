@@ -31,7 +31,7 @@ export class Header extends Component {
                             type="button"
                             onClick={this.handleLogout}>
                             Logout
-                      </button>
+                        </button>
                     </Fragment>
                 : 
                     <Fragment>

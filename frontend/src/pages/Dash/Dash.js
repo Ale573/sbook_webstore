@@ -15,25 +15,25 @@ export class Dash extends Component {
             books:[
                 {
                     'id': '0',
-                    'name':'Book 1',
+                    'name':'Cell Biology',
                     'author': 'Author 1',
                     'year': '2000'
                 },
                 {
                     'id': '1',
-                    'name':'Book 2',
+                    'name':'Cell Biology',
                     'author': 'Author 2',
                     'year': '2001'
                 },
                 {
                     'id': '2',
-                    'name':'Book 3',
+                    'name':'Cell Biology',
                     'author': 'Author 3',
                     'year': '2002'
                 },
                 {
                     'id': '3',
-                    'name':'Book 4',
+                    'name':'Cell Biology',
                     'author': 'Author 4',
                     'year': '2003'
                 }
@@ -53,7 +53,7 @@ export class Dash extends Component {
             <div>
                 <h1 className="welcome_message">Welcome <span style={span}>{this.state.username}</span>!</h1>
 
-                <h2 className="recommend_message">Here some recommended Books!</h2>
+                <h2 className="recommend_message">Here are some recommended Books!</h2>
 
                 {this.state.books.map( book =>
                 <Book
