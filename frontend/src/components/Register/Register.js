@@ -7,6 +7,7 @@ export class Register extends Component {
     super(props);
 
     this.state = {
+      name: '',
       email: '',
       password: '',
       confirm_password: '',
@@ -16,35 +17,41 @@ export class Register extends Component {
     }
   }
 
-    emailChange = (e) => {
-        this.setState ({
-          email: e.target.value,
-        })
-      }
+  nameChange = (e) => {
+    this.setState ({
+      name: e.target.value,
+    })
+  }
+
+  emailChange = (e) => {
+    this.setState ({
+      email: e.target.value,
+    })
+  }
     
-      passwordChange = (e) => {
-        this.setState ({
-          password: e.target.value,
-        })
-      }
+  passwordChange = (e) => {
+    this.setState ({
+      password: e.target.value,
+    })
+  }
 
-      confirmPasswordChange = (e) => {
-        this.setState ({
-          confirm_password: e.target.value,
-        })
-      }
+  confirmPasswordChange = (e) => {
+    this.setState ({
+      confirm_password: e.target.value,
+    })
+  }
 
-      fetchData = () => {
-        this.setState({
-          loading: true
-        })
+  fetchData = () => {
+    this.setState({
+      loading: true
+    })
 
-        setTimeout(() => {
-          this.setState({
-            loading: false
-          })
-        }, 3000)
-      }
+    setTimeout(() => {
+      this.setState({
+        loading: false
+      })
+    }, 3000)
+  }
 
       onSubmit = (e) => {
 
