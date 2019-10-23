@@ -29,14 +29,17 @@ def register():
     # Connect database
     conn = mysql.connect()
     cursor = conn.cursor()
+
+    #Read data from GUI
+    data = request.get_json()["newUser"]
     
-    # Read the posted values from the GUI
-    name = request.get_json()['username']
-    email = request.get_json()['email']
-    password = bcrypt.generate_password_hash(request.get_json()['password']).decode('utf-8')
+    # Saving values
+    name = data['name']
+    email = data['email']
+    password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
 
     #Save data in the database 
-    cursor.execute("INSERT INTO users (username, email, password) VALUES ('" +
+    cursor.execute("INSERT INTO users (name, email, password) VALUES ('" +
     str(name) + "', '" +
     str(email) + "', '" +
     str(password) + "')")
