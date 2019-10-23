@@ -3,6 +3,7 @@ import {Link, withRouter} from 'react-router-dom';
 import Auth from '../Auth/Auth';
 
 import Logo from './images/book_icon.png';
+import UserIcon from './images/user_logo.png';
 
 export class Header extends Component {
 
@@ -32,6 +33,14 @@ export class Header extends Component {
                             onClick={this.handleLogout}>
                             Logout
                         </button>
+
+                        <Link to ="/profile"><img 
+                            className="user_icon"
+                            src={UserIcon}
+                            alt="User Logo"
+                            height="65"
+                            width="65"/>
+                        </Link>
                     </Fragment>
                 : 
                     <Fragment>

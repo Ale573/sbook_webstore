@@ -28,6 +28,12 @@
   text-shadow: 1px 3px 11px #000000;
 }
 
+.main_header .user_icon {
+  float: right;
+  margin: 40px 20px;
+  cursor: pointer;
+}
+
 .main_header .logout_button {
   float: right;
   margin: 40px 30px;
