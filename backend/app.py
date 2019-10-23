@@ -46,7 +46,44 @@ def register():
 
     conn.commit()
 
-    return jsonify({'name': name})
+    return jsonify({'status': 'Registered'})
+
+# Login function
+@app.route("/login", methods = ['POST'])
+def login():
+
+    # Connect database
+    conn = mysql.connect()
+    cursor = conn.cursor()
+
+    #Read data from GUI
+    data = request.get_json()["user"]
+    
+    # Read the posted values from the GUI
+    email = data['email']
+    password = data['password']
+
+    # Result variable
+    result = ""
+
+    #Get data from database 
+    cursor.execute("SELECT * FROM users where email = '" + str(email) + "'")
+    data = cursor.fetchone()
+
+    if data != None and bcrypt.check_password_hash(data[3], password):
+
+        access_token = create_access_token(identity = {
+            'id': data[0],
+            'name': data[1],
+            'email': data[2]
+        })
+
+        result = access_token
+
+    else:
+        result = jsonify({"error" : "error"})
+
+    return result
 
 if __name__ == '__main__':
     app.run(debug = True)

@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
-import Cover from './images/booktest.jpg'
-import Book from '../../components/Book/Book'
+import React, { Component } from 'react';
+import jwt_decode from 'jwt-decode';
+
+import Cover from './images/booktest.jpg';
+import Book from '../../components/Book/Book';
 
 export class Dash extends Component {       
                 
@@ -9,7 +11,7 @@ export class Dash extends Component {
 
         this.state = {
             id: '',
-            username: '',
+            name: '',
             email: '', 
 
             books:[
@@ -42,16 +44,17 @@ export class Dash extends Component {
     }
 
     componentDidMount() {
-        const token = localStorage.getItem('usertoken')
+        const token = localStorage.usertoken
+        const decoded = jwt_decode(token)
         this.setState({
-            username: token
+            name: decoded.identity.name
         })
     }
 
     render() {
         return (
             <div>
-                <h1 className="welcome_message">Welcome <span style={span}>{this.state.username}</span>!</h1>
+                <h1 className="welcome_message">Welcome <span style={span}>{this.state.name}</span>!</h1>
 
                 <h2 className="recommend_message">Here are some recommended Books!</h2>
 

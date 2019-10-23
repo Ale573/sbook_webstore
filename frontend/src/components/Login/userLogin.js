@@ -3,13 +3,9 @@ import Auth from '../Auth/Auth';
 
 export const login = user => {
     return axios
-        .get('http://jsonplaceholder.typicode.com/users', {
-            params: {
-                email: user.email
-            }
-        })
+        .post('http://127.0.0.1:5000/login', { user })
         .then(response => {
-            Auth.authenticateUser(response.data[0].username) //Testing purpose
+            Auth.authenticateUser(response.data)
         })
         .catch(error => {
             return error
