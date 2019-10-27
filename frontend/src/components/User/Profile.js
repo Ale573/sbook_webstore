@@ -52,8 +52,8 @@ export class Profile extends Component {
         return (
             <div className="user_profile">
                 <h1 className="header_title">Profile</h1>
-                <h2 className="user_profile_item">{this.state.name}</h2>
-                <h2 className="user_profile_item">University of Puerto Rico Mayaguez Campus</h2>
+                <h2 className="user_profile_item">Name: {this.state.name}</h2>
+                <h2 className="user_profile_item">University: University of Puerto Rico Mayaguez Campus</h2>
 
                 <h1 className="header_title">Books on sale</h1>
                 {this.state.books.map( book =>
