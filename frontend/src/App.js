@@ -6,6 +6,7 @@ import Home from './pages/Home/Home';
 import Header from './components/Header/Header';
 import Dash from './pages/Dash/Dash';
 import Auth from './components/Auth/Auth';
+import Profile from './components/User/Profile';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
             <Switch>
               <Route path="/" exact component={Home}/>
               <PrivateRoute path='/dash' component={Dash} />
+              <PrivateRoute path='/profile' component={Profile} />
             </Switch>
         </div>
       </div>
