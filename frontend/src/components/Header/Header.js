@@ -34,7 +34,15 @@ export class Header extends Component {
                             Logout
                         </button>
 
-                        <Link to ="/profile"><img 
+                        <Link to="/selling">
+                            <button
+                                className="logout_button"
+                                type="button">
+                                Sell
+                            </button>
+                        </Link>
+
+                        <Link to="/profile"><img 
                             className="user_icon"
                             src={UserIcon}
                             alt="User Logo"
