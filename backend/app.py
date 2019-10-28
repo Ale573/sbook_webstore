@@ -85,5 +85,38 @@ def login():
 
     return result
 
+# Selling book function
+@app.route("/sellingBook", methods = ['POST'])
+def sellingBook():
+
+    # Connect database
+    conn = mysql.connect()
+    cursor = conn.cursor()
+
+    #Read data from GUI
+    data = request.get_json()["book"]
+    
+    # Read the posted values from the GUI
+    userId = data['userId']
+    name = data['name']
+    author = data['author']
+    year = data['year']
+    edition = data['edition']
+    isbn = data['isbn']
+    price = data['price']
+    book_condition = data['condition']
+    offer = data['offer']
+    return_policy = data['return_policy']
+    cash = data['cash']
+    cards = data['cards']
+
+    #Save data in the database 
+    query="INSERT INTO books(userId, name, author, year, edition, isbn, price, book_condition, offer, return_policy, cash, cards) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    cursor.execute(query,(userId, name, author, year, edition, isbn, price, book_condition, offer, return_policy, cash, cards))
+
+    conn.commit()
+
+    return jsonify({'status': 'Submited'})
+
 if __name__ == '__main__':
     app.run(debug = True)

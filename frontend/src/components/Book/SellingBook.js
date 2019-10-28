@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import jwt_decode from 'jwt-decode';
+import { sellingBook } from './sellingFunction';
 
 export class SellingBook extends Component {
     constructor(props) {
@@ -71,11 +73,11 @@ export class SellingBook extends Component {
     }
 
     returnChange = (e) => {
-        if(this.state.return === false) {
-            this.setState({return: true})
+        if(this.state.return_policy === false) {
+            this.setState({return_policy: true})
         }
         else {
-            this.setState({return: false})
+            this.setState({return_policy: false})
         }
     }
 
@@ -98,7 +100,27 @@ export class SellingBook extends Component {
     }
 
     onSubmit = (e) => {
-        console.log(this.state)
+        const token = localStorage.usertoken
+        const decoded = jwt_decode(token)
+
+        const book = {
+            userId: decoded.identity.id,
+            name: this.state.name,
+            author: this.state.author,
+            year: this.state.year,
+            edition: this.state.edition,
+            isbn: this.state.isbn,
+            price: this.state.price,
+            condition: this.state.condition,
+            offer: this.state.offer,
+            return_policy: this.state.return_policy,
+            cash: this.state.cash,
+            cards: this.state.cards
+        }
+
+        sellingBook(book).then(res => {
+            //TODO
+        })
     }
 
     render() {
