@@ -65,7 +65,7 @@ export class updateProfile extends Component {
                 }
         
                 updateProfileFunction(profile).then(res => {
-                    //TODO
+                    this.props.history.push('/dash');
                 })
         }
 
@@ -135,7 +135,7 @@ export class updateProfile extends Component {
                         onClick={this.onSubmit}>
                         Update
                     </button>
-                    
+
                     <p className={this.state.error ? "error_message_active" : "error_message"}>{this.state.message}</p>
                 </form>
             </div>
