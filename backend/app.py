@@ -30,23 +30,31 @@ def register():
     conn = mysql.connect()
     cursor = conn.cursor()
 
-    #Read data from GUI
+    # Read data from GUI
     data = request.get_json()["newUser"]
     
     # Saving values
-    name = data['name']
-    email = data['email']
+    username = data['username']
     password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
+    status = "new"
 
-    #Save data in the database 
-    cursor.execute("INSERT INTO users (name, email, password) VALUES ('" +
-    str(name) + "', '" +
-    str(email) + "', '" +
-    str(password) + "')")
+    # Save data in the database
+    query="INSERT INTO users (username, password, status) VALUES(%s, %s, %s)"
+    cursor.execute(query,(username, password, status))
 
     conn.commit()
 
-    return jsonify({'status': 'Registered'})
+    # Creates token access
+    cursor.execute("SELECT * FROM users where username = '" + str(username) + "'")
+    data = cursor.fetchone()
+
+    access_token = create_access_token(identity = {
+            'id': data[0],
+            'username': data[1],
+            'status': data[3]
+        })
+
+    return access_token
 
 # Login function
 @app.route("/login", methods = ['POST'])
@@ -56,26 +64,26 @@ def login():
     conn = mysql.connect()
     cursor = conn.cursor()
 
-    #Read data from GUI
+    # Read data from GUI
     data = request.get_json()["user"]
     
     # Read the posted values from the GUI
-    email = data['email']
+    username = data['username']
     password = data['password']
 
     # Result variable
     result = ""
 
-    #Get data from database 
-    cursor.execute("SELECT * FROM users where email = '" + str(email) + "'")
+    # Get data from database 
+    cursor.execute("SELECT * FROM users where username = '" + str(username) + "'")
     data = cursor.fetchone()
 
     if data != None and bcrypt.check_password_hash(data[3], password):
 
         access_token = create_access_token(identity = {
             'id': data[0],
-            'name': data[1],
-            'email': data[2]
+            'username': data[1],
+            'status': data[3]
         })
 
         result = access_token
@@ -84,6 +92,43 @@ def login():
         result = jsonify({"error" : "error"})
 
     return result
+
+# Update profile
+@app.route("/updateProfile", methods = ['POST'])
+def updateProfile():
+    # Connect database
+    conn = mysql.connect()
+    cursor = conn.cursor()
+
+    #Read data from GUI
+    data = request.get_json()["profile"]
+
+    # Read the posted values from the GUI
+    userId = data['userId']
+    name = data['name']
+    email = data['email']
+    address = data['address']
+    billing_address = data['billing_address']
+    phone = data['phone']
+
+    # Verify if is a new user and save data in database
+    cursor.execute("SELECT * FROM accounts where userID = '" + str(userId) + "'")
+    data = cursor.fetchone()
+
+    if(data == None):
+        query="INSERT INTO accounts(userId, name, email, address, billing_address, phone) VALUES(%s, %s, %s, %s, %s, %s)"
+        cursor.execute(query,(userId, name, email, address, billing_address, phone))
+
+        conn.commit()
+    else:
+        cursor.execute("UPDATE accounts SET name = '"+ str(name) +"' WHERE userId ='"+ str(userId) +"'")
+        cursor.execute("UPDATE accounts SET email = '"+ str(email) +"' WHERE userId ='"+ str(userId) +"'")
+        cursor.execute("UPDATE accounts SET address = '"+ str(address) +"' WHERE userId ='"+ str(userId) +"'")
+        cursor.execute("UPDATE accounts SET billing_address = '"+ str(billing_address) +"' WHERE userId ='"+ str(userId) +"'")
+        cursor.execute("UPDATE accounts SET phone = '"+ str(phone) +"' WHERE userId ='"+ str(userId) +"'")
+        conn.commit()
+
+    return jsonify({'status': 'Updated'})
 
 # Selling book function
 @app.route("/sellingBook", methods = ['POST'])

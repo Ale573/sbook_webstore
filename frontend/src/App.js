@@ -7,6 +7,7 @@ import Header from './components/Header/Header';
 import Dash from './pages/Dash/Dash';
 import Auth from './components/Auth/Auth';
 import Profile from './components/User/Profile';
+import UpdateProfile from './components/User/updateProfile';
 import Selling from './components/Book/SellingBook';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
               <Route path="/" exact component={Home}/>
               <PrivateRoute path='/dash' component={Dash} />
               <PrivateRoute path='/profile' component={Profile} />
+              <PrivateRoute path='/updateProfile' component={UpdateProfile} />
               <PrivateRoute path='/selling' component={Selling} />
             </Switch>
         </div>

@@ -7,8 +7,7 @@ export class Register extends Component {
     super(props);
 
     this.state = {
-      name: '',
-      email: '',
+      username: '',
       password: '',
       confirm_password: '',
       error: false,
@@ -17,15 +16,9 @@ export class Register extends Component {
     }
   }
 
-  nameChange = (e) => {
+  usernameChange = (e) => {
     this.setState({
-      name: e.target.value,
-    })
-  }
-
-  emailChange = (e) => {
-    this.setState({
-      email: e.target.value,
+      username: e.target.value,
     })
   }
 
@@ -57,13 +50,12 @@ export class Register extends Component {
 
     this.fetchData();
 
-    if (this.state.name.length > 0 && this.state.email.length > 0 && this.state.password.length > 0 && this.state.confirm_password.length > 0) {
+    if (this.state.username.length > 0 && this.state.password.length > 0 && this.state.confirm_password.length > 0) {
       if (this.state.password.length >= 8) {
         if (this.state.password === this.state.confirm_password) {
 
           const newUser = {
-            name: this.state.name,
-            email: this.state.email,
+            username: this.state.username,
             password: this.state.password
           }
 
@@ -97,21 +89,13 @@ export class Register extends Component {
     return (
       <div className="form_container">
         <form>
-          <label className="label_text">Name</label>
+          <label className="label_text">Username</label>
           <input
             className="input_box"
             type="text"
-            name="text"
-            onChange={this.nameChange}
-            value={this.state.name}
-          />
-          <label className="label_text">Email</label>
-          <input
-            className="input_box"
-            type="email"
-            name="email"
-            onChange={this.emailChange}
-            value={this.state.email}
+            name="username"
+            onChange={this.usernameChange}
+            value={this.state.username}
           />
 
           <label className="label_text">Password</label>

@@ -11,8 +11,8 @@ export class Dash extends Component {
 
         this.state = {
             id: '',
-            name: '',
-            email: '', 
+            username: '',
+            status: '',
 
             books:[
                 {
@@ -47,14 +47,15 @@ export class Dash extends Component {
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
         this.setState({
-            name: decoded.identity.name
+            username: decoded.identity.username,
+            status: decoded.identity.status
         })
     }
 
     render() {
         return (
             <div>
-                <h1 className="welcome_message">Welcome <span style={span}>{this.state.name}</span>!</h1>
+                <h1 className="welcome_message">Welcome <span style={span}>{this.state.username}</span>!</h1>
 
                 <h2 className="recommend_message">Here are some recommended Books!</h2>
 

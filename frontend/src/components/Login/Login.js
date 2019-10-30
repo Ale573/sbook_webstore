@@ -8,7 +8,7 @@ export class Login extends Component {
     super(props);
 
     this.state = {
-      email: '',
+      username: '',
       password: '',
       error: false,
       message: '',
@@ -16,9 +16,9 @@ export class Login extends Component {
     }
   }
 
-    emailChange = (e) => {
+    usernameChange = (e) => {
         this.setState ({
-          email: e.target.value,
+          username: e.target.value,
         })
       }
     
@@ -44,10 +44,10 @@ export class Login extends Component {
 
         this.fetchData();
 
-        if(this.state.email.length > 0 && this.state.password.length > 0) {  
+        if(this.state.username.length > 0 && this.state.password.length > 0) {  
 
           const user = {
-            email: this.state.email,
+            username: this.state.username,
             password: this.state.password
           }
 
@@ -58,7 +58,7 @@ export class Login extends Component {
             else {
               this.setState({
                 error: true,
-                message: "Invalid email or password."
+                message: "Invalid username or password."
               })
             }
           })
@@ -75,13 +75,13 @@ export class Login extends Component {
         return (
             <div className="form_container">
                 <form>
-                    <label className="label_text">Email</label>
+                    <label className="label_text">Username</label>
                     <input
                         className="input_box" 
-                        type="email" 
-                        name="email"
-                        onChange={this.emailChange}
-                        value={this.state.email}  
+                        type="text" 
+                        name="username"
+                        onChange={this.usernameChange}
+                        value={this.state.username}  
                     />
 
                     <label className="label_text">Password</label>

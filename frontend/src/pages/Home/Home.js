@@ -28,10 +28,7 @@ export class Home extends Component {
     }
 
     successfulRegister = () => {
-        this.setState({
-            login: true,
-            register: false,
-        });
+        this.props.history.push('/updateProfile');
     }
 
     render() {
