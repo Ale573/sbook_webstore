@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
 
 import Book from '../Book/Book';
+import { getUserProfile } from './updateFunction';
 
 import Cover from './booktest.jpg';
 
@@ -10,7 +11,11 @@ export class Profile extends Component {
         super(props)
 
         this.state = {
+            id: '',
             name: '',
+            email: '',
+            address: '',
+            phone: '',
             books:[
                 {
                     'id': '0',
@@ -43,8 +48,14 @@ export class Profile extends Component {
     componentDidMount() {
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
-        this.setState({
-            name: decoded.identity.name
+
+        getUserProfile(decoded.identity.id).then(res => {
+            this.setState({
+                name: res[2],
+                email: res[3],
+                address: res[4],
+                phone: res[6],
+            })
         })
     }
 
@@ -53,7 +64,9 @@ export class Profile extends Component {
             <div className="user_profile">
                 <h1 className="header_title">Profile</h1>
                 <h2 className="user_profile_item">Name: {this.state.name}</h2>
-                <h2 className="user_profile_item">University: University of Puerto Rico Mayaguez Campus</h2>
+                <h2 className="user_profile_item">Email: {this.state.email}</h2>
+                <h2 className="user_profile_item">Address: {this.state.address}</h2>
+                <h2 className="user_profile_item">Phone: {this.state.phone}</h2>
 
                 <h1 className="header_title">Books on sale</h1>
                 {this.state.books.map( book =>

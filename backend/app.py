@@ -121,6 +121,28 @@ def updateProfile():
 
     return jsonify({'status': 'Updated'}), 200
 
+
+# Get Profile function
+@app.route("/getProfile", methods = ['POST'])
+def getProfile():
+
+    # Connect database
+    conn = mysql.connect()
+    cursor = conn.cursor()
+
+    # Read data from GUI
+    id = request.get_json()["userId"]
+
+    # Get data from database 
+    cursor.execute("SELECT * FROM accounts where userId = '" + str(id) + "'")
+    data = cursor.fetchone()
+
+    if data != None:
+        return json.dumps(data), 200
+
+    else:
+        return jsonify({"msg" : "There is no profile"}), 401
+
 # Selling book function
 @app.route("/sellingBook", methods = ['POST'])
 def sellingBook():
