@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import jwt_decode from 'jwt-decode';
 
 import Login from '../../components/Login/Login';
 import Register from '../../components/Register/Register';
+import Auth from '../../components/Auth/Auth';
 
 export class Home extends Component {
     state = {
@@ -24,11 +26,22 @@ export class Home extends Component {
     }
 
     successfulLogin = () => {
-        this.props.history.push('/dash');
+        const token = Auth.getToken();
+        const decoded = jwt_decode(token);
+
+        if(decoded.identity.status === "new"){
+            this.props.history.push('/updateProfile');
+        }
+        else {
+            this.props.history.push('/dash');
+        }
     }
 
     successfulRegister = () => {
-        this.props.history.push('/updateProfile');
+        this.setState({
+            login: true,
+            register: false
+        })
     }
 
     render() {

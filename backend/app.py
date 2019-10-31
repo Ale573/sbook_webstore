@@ -44,17 +44,7 @@ def register():
 
     conn.commit()
 
-    # Creates token access
-    cursor.execute("SELECT * FROM users where username = '" + str(username) + "'")
-    data = cursor.fetchone()
-
-    access_token = create_access_token(identity = {
-            'id': data[0],
-            'username': data[1],
-            'status': data[3]
-        })
-
-    return access_token
+    return jsonify({'status': 'Registered'}), 200
 
 # Login function
 @app.route("/login", methods = ['POST'])
@@ -71,14 +61,11 @@ def login():
     username = data['username']
     password = data['password']
 
-    # Result variable
-    result = ""
-
     # Get data from database 
     cursor.execute("SELECT * FROM users where username = '" + str(username) + "'")
     data = cursor.fetchone()
 
-    if data != None and bcrypt.check_password_hash(data[3], password):
+    if data != None and bcrypt.check_password_hash(data[2], password):
 
         access_token = create_access_token(identity = {
             'id': data[0],
@@ -86,12 +73,11 @@ def login():
             'status': data[3]
         })
 
-        result = access_token
+        return access_token, 200
 
     else:
-        result = jsonify({"error" : "error"})
+        return jsonify({"msg" : "Cannot create access token"}), 401
 
-    return result
 
 # Update profile
 @app.route("/updateProfile", methods = ['POST'])
@@ -118,7 +104,12 @@ def updateProfile():
     if(data == None):
         query="INSERT INTO accounts(userId, name, email, address, billing_address, phone) VALUES(%s, %s, %s, %s, %s, %s)"
         cursor.execute(query,(userId, name, email, address, billing_address, phone))
+        conn.commit()
 
+        # Change status in database
+        status= "active"
+
+        cursor.execute("UPDATE users SET status = '"+ str(status) +"' WHERE id ='"+ str(userId) +"'")
         conn.commit()
     else:
         cursor.execute("UPDATE accounts SET name = '"+ str(name) +"' WHERE userId ='"+ str(userId) +"'")
@@ -128,7 +119,7 @@ def updateProfile():
         cursor.execute("UPDATE accounts SET phone = '"+ str(phone) +"' WHERE userId ='"+ str(userId) +"'")
         conn.commit()
 
-    return jsonify({'status': 'Updated'})
+    return jsonify({'status': 'Updated'}), 200
 
 # Selling book function
 @app.route("/sellingBook", methods = ['POST'])
@@ -161,7 +152,7 @@ def sellingBook():
 
     conn.commit()
 
-    return jsonify({'status': 'Submited'})
+    return jsonify({'status': 'Submited'}), 200
 
 if __name__ == '__main__':
     app.run(debug = True)

@@ -5,9 +5,10 @@ export const login = user => {
     return axios
         .post('http://127.0.0.1:5000/login', { user })
         .then(response => {
+            console.log(response.data)
             Auth.authenticateUser(response.data)
         })
-        .catch(error => {
-            return error
+        .catch(err => {
+            return err
         })
 }
