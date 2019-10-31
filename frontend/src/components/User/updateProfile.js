@@ -13,7 +13,7 @@ export class updateProfile extends Component {
             billing_address: '',
             phone: '',
             error: false,
-            message: '',
+            message: ''
         }
     }
 
@@ -79,11 +79,10 @@ export class updateProfile extends Component {
 
     render() {
         return (
-            <div className="selling_book">
+            <div className="update_profile">
                 <h1 className="header_title">Update your profile!</h1>
 
-                <form>
-
+                <form className="profile_form">
                     <label className="label_text">Name</label>
                     <input
                         className="input_box"
@@ -137,6 +136,7 @@ export class updateProfile extends Component {
                     </button>
 
                     <p className={this.state.error ? "error_message_active" : "error_message"}>{this.state.message}</p>
+
                 </form>
             </div>
         )

@@ -40,7 +40,7 @@
     .logout_button {
         float: right;
         margin: 40px 30px;
-        border: solid 1px #117c20;
+        border: solid 1.5px #117c20;
         background-color: #117c20;
         color: white;
         border-radius: 8px;
@@ -151,6 +151,7 @@
         border: solid 1px #117c20;
         background-color: #117c20;
         color: white;
+        border: 1.5px solid #117c20;
         border-radius: 8px;
         box-shadow: 1px 1px 6px black;
         padding: 18px 32px;
@@ -192,6 +193,7 @@
     float: left;
     margin: 40px 65px;
     padding: 10px;
+    border: 1px solid transparent;
 
     .book_cover {
         border-radius: 5px;
@@ -209,4 +211,119 @@
     cursor: pointer;
 }
 
+//Profile CSS
+.profile {
+
+    .profile_title {
+        width: 250px;
+        margin: 30px 20px;
+    
+        //border: 1px solid black;
+    }
+
+    .user_link {
+        width: 50px;
+        font-size: .7em;
+        color: gray;
+
+        //border: 1px solid black;
+    }
+
+    .user_profile_item {
+        width: 700px;
+        margin: 10px 60px;
+
+        //border: 1px solid black;
+    }
+}
+
+//Update Profile CSS
+.update_profile, .selling_book {
+    margin-left: 50px;
+
+    .profile_form, .selling_form {
+        
+        .label_text {
+            width: 120px;
+            margin: 10px 0px;
+            font-size: 1.7em;
+        }
+
+        .input_box {
+            display: block;
+            margin: 10px 0px;
+            width: 450px;
+            height: 40px;
+            border: solid 1px #105c1b;
+            border-radius: 10px;
+            box-shadow: 1px 1px 8px #1a912c;
+            font-size: 1.4em;
+        }
+
+        .submit_button {
+            float: left;
+            margin: 20px 0px;
+            border: solid 1px #117c20;
+            background-color: #117c20;
+            color: white;
+            border: 1.5px solid #117c20;
+            border-radius: 8px;
+            box-shadow: 1px 1px 6px black;
+            padding: 18px 32px;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        
+        .submit_button:hover {
+            background-color:  #105c1b;
+            color: white;
+            border: inset 1.5px black;
+        }
+
+        .error_message {
+            display: none;
+        }
+
+        .error_message_active {
+            width: 220px;
+            margin-top: 40px;
+            margin-left: 60px;
+            float: left;
+            color: #202020;
+
+            font-size: 1.4em;
+        }
+    }
+}
+
 //Selling Book 
+.selling_book {
+
+    .selling_form {
+
+        .checkbox_division {
+            margin-top: 20px;
+        }
+
+        .input_select {
+            width: 120px;
+            height: 30px;
+            margin-left: 20px;
+        }
+
+        .checkbox_text {
+            width: 120px;
+            margin: 10px 0px;
+            font-size: 1.4em;
+        }
+       
+        .checkbox {
+            clear: both;
+            width: 20px;
+            height: 20px;
+            margin: 10px 10px;
+            border: solid 1px #105c1b;
+            border-radius: 10px;
+        }
+    }
+}

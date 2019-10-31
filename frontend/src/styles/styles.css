@@ -37,7 +37,7 @@
 .main_header .logout_button {
   float: right;
   margin: 40px 30px;
-  border: solid 1px #117c20;
+  border: solid 1.5px #117c20;
   background-color: #117c20;
   color: white;
   border-radius: 8px;
@@ -135,6 +135,7 @@
   border: solid 1px #117c20;
   background-color: #117c20;
   color: white;
+  border: 1.5px solid #117c20;
   border-radius: 8px;
   box-shadow: 1px 1px 6px black;
   padding: 18px 32px;
@@ -173,6 +174,7 @@
   float: left;
   margin: 40px 65px;
   padding: 10px;
+  border: 1px solid transparent;
 }
 
 .book_container .book_cover {
@@ -188,4 +190,99 @@
   border: 1px solid #105c1b;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.profile .profile_title {
+  width: 250px;
+  margin: 30px 20px;
+}
+
+.profile .user_link {
+  width: 50px;
+  font-size: .7em;
+  color: gray;
+}
+
+.profile .user_profile_item {
+  width: 700px;
+  margin: 10px 60px;
+}
+
+.update_profile, .selling_book {
+  margin-left: 50px;
+}
+
+.update_profile .profile_form .label_text, .update_profile .selling_form .label_text, .selling_book .profile_form .label_text, .selling_book .selling_form .label_text {
+  width: 120px;
+  margin: 10px 0px;
+  font-size: 1.7em;
+}
+
+.update_profile .profile_form .input_box, .update_profile .selling_form .input_box, .selling_book .profile_form .input_box, .selling_book .selling_form .input_box {
+  display: block;
+  margin: 10px 0px;
+  width: 450px;
+  height: 40px;
+  border: solid 1px #105c1b;
+  border-radius: 10px;
+  box-shadow: 1px 1px 8px #1a912c;
+  font-size: 1.4em;
+}
+
+.update_profile .profile_form .submit_button, .update_profile .selling_form .submit_button, .selling_book .profile_form .submit_button, .selling_book .selling_form .submit_button {
+  float: left;
+  margin: 20px 0px;
+  border: solid 1px #117c20;
+  background-color: #117c20;
+  color: white;
+  border: 1.5px solid #117c20;
+  border-radius: 8px;
+  box-shadow: 1px 1px 6px black;
+  padding: 18px 32px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.update_profile .profile_form .submit_button:hover, .update_profile .selling_form .submit_button:hover, .selling_book .profile_form .submit_button:hover, .selling_book .selling_form .submit_button:hover {
+  background-color: #105c1b;
+  color: white;
+  border: inset 1.5px black;
+}
+
+.update_profile .profile_form .error_message, .update_profile .selling_form .error_message, .selling_book .profile_form .error_message, .selling_book .selling_form .error_message {
+  display: none;
+}
+
+.update_profile .profile_form .error_message_active, .update_profile .selling_form .error_message_active, .selling_book .profile_form .error_message_active, .selling_book .selling_form .error_message_active {
+  width: 220px;
+  margin-top: 40px;
+  margin-left: 60px;
+  float: left;
+  color: #202020;
+  font-size: 1.4em;
+}
+
+.selling_book .selling_form .checkbox_division {
+  margin-top: 20px;
+}
+
+.selling_book .selling_form .input_select {
+  width: 120px;
+  height: 30px;
+  margin-left: 20px;
+}
+
+.selling_book .selling_form .checkbox_text {
+  width: 120px;
+  margin: 10px 0px;
+  font-size: 1.4em;
+}
+
+.selling_book .selling_form .checkbox {
+  clear: both;
+  width: 20px;
+  height: 20px;
+  margin: 10px 10px;
+  border: solid 1px #105c1b;
+  border-radius: 10px;
 }

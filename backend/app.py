@@ -38,7 +38,7 @@ def register():
     password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
     status = "new"
 
-    # Save data in the database
+    # Save values in the database
     query="INSERT INTO users (username, password, status) VALUES(%s, %s, %s)"
     cursor.execute(query,(username, password, status))
 
@@ -57,11 +57,11 @@ def login():
     # Read data from GUI
     data = request.get_json()["user"]
     
-    # Read the posted values from the GUI
+    # Saving values
     username = data['username']
     password = data['password']
 
-    # Get data from database 
+    # Get user from database 
     cursor.execute("SELECT * FROM users where username = '" + str(username) + "'")
     data = cursor.fetchone()
 
@@ -76,12 +76,13 @@ def login():
         return access_token, 200
 
     else:
-        return jsonify({"msg" : "Cannot create access token"}), 401
+        return jsonify({"msg" : "The users does not exist or the password is wrong."}), 401
 
 
 # Update profile
 @app.route("/updateProfile", methods = ['POST'])
 def updateProfile():
+
     # Connect database
     conn = mysql.connect()
     cursor = conn.cursor()
@@ -89,7 +90,7 @@ def updateProfile():
     #Read data from GUI
     data = request.get_json()["profile"]
 
-    # Read the posted values from the GUI
+    # Saving values
     userId = data['userId']
     name = data['name']
     email = data['email']
@@ -97,7 +98,7 @@ def updateProfile():
     billing_address = data['billing_address']
     phone = data['phone']
 
-    # Verify if is a new user and save data in database
+    # Verify if it is a new user and save data in database
     cursor.execute("SELECT * FROM accounts where userID = '" + str(userId) + "'")
     data = cursor.fetchone()
 
@@ -106,7 +107,7 @@ def updateProfile():
         cursor.execute(query,(userId, name, email, address, billing_address, phone))
         conn.commit()
 
-        # Change status in database
+        # Change status value in database
         status= "active"
 
         cursor.execute("UPDATE users SET status = '"+ str(status) +"' WHERE id ='"+ str(userId) +"'")
@@ -141,7 +142,7 @@ def getProfile():
         return json.dumps(data), 200
 
     else:
-        return jsonify({"msg" : "There is no profile"}), 401
+        return jsonify({"msg" : "There is no profile."}), 401
 
 # Selling book function
 @app.route("/sellingBook", methods = ['POST'])
@@ -154,7 +155,7 @@ def sellingBook():
     #Read data from GUI
     data = request.get_json()["book"]
     
-    # Read the posted values from the GUI
+    # Saving values
     userId = data['userId']
     name = data['name']
     author = data['author']
@@ -168,7 +169,7 @@ def sellingBook():
     cash = data['cash']
     cards = data['cards']
 
-    #Save data in the database 
+    #Save values in the database 
     query="INSERT INTO books(userId, name, author, year, edition, isbn, price, book_condition, offer, return_policy, cash, cards) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     cursor.execute(query,(userId, name, author, year, edition, isbn, price, book_condition, offer, return_policy, cash, cards))
 

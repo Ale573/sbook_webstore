@@ -17,7 +17,9 @@ export class SellingBook extends Component {
             offer: false,
             return_policy: false,
             cash: false,
-            cards: false
+            cards: false,
+            error: false,
+            message: ''
         }
     }
 
@@ -128,7 +130,7 @@ export class SellingBook extends Component {
             <div className="selling_book">
                 <h1 className="header_title">Selling Book Form</h1>
 
-                <form>
+                <form className="selling_form">
 
                     <label className="label_text">Book Name</label>
                     <input
@@ -199,45 +201,54 @@ export class SellingBook extends Component {
                         </select>
                     </div>
 
-                    <input 
-                        className="input_box"
-                        type="checkbox" 
-                        name="offer"
-                        id="offer"
-                        onChange={this.offerChange} />
-                        <label htmlFor="offer">Offer</label>
-
-                    <input 
-                        className="input_box"
-                        type="checkbox" 
-                        name="return_policy"
-                        id="return_policy"
-                        onChange={this.returnChange} />
-                        <label htmlFor="return_policy">Return</label>
-
-                    <label>Select the payment method:</label>
+                    <div className="checkbox_division">
                         <input 
-                            className="input_box"
+                            className="checkbox"
                             type="checkbox" 
-                            name="cash"
-                            id="cash"
-                            onChange={this.cashChange} />
-                            <label htmlFor="cash">Cash</label>
+                            name="offer"
+                            id="offer"
+                            onChange={this.offerChange} />
+                            <label className="checkbox_text" htmlFor="offer">Offer Option</label>
+                    </div>
 
+                    <div className="checkbox_division">
                         <input 
-                            className="input_box"
+                            className="checkbox"
                             type="checkbox" 
-                            name="cards"
-                            id="cards"
-                            onChange={this.cardsChange} />
-                            <label htmlFor="cards">Cards</label>
+                            name="return_policy"
+                            id="return_policy"
+                            onChange={this.returnChange} />
+                            <label className="checkbox_text" htmlFor="return_policy">Return Option</label>
+                    </div>
 
+                    <div className="checkbox_division">
+                        <label className="label_text">Select the payment method:</label>
+                            <input 
+                                className="checkbox"
+                                type="checkbox" 
+                                name="cash"
+                                id="cash"
+                                onChange={this.cashChange} />
+                                <label className="checkbox_text" htmlFor="cash">Cash</label>
+
+                            <input 
+                                className="checkbox"
+                                type="checkbox" 
+                                name="cards"
+                                id="cards"
+                                onChange={this.cardsChange} />
+                                <label className="checkbox_text" htmlFor="cards">Cards</label>
+                    </div>
+                    
                     <button
                         className="submit_button"
                         type="button"
                         onClick={this.onSubmit}>
                         Submit
                     </button>
+
+                    <p className={this.state.error ? "error_message_active" : "error_message"}>{this.state.message}</p>
+
                 </form>
             </div>
         )
