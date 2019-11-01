@@ -192,9 +192,8 @@ export class SellingBook extends Component {
                             className="input_select"
                             onChange={this.conditionChange}
                             value={this.state.condition}>
-                                <option value="as_new">- Select -</option>
+                                <option value="">- Select -</option>
                                 <option value="as_new">As new</option>
-                                <option value="very_good">Very Good</option>
                                 <option value="good">Good</option>
                                 <option value="fair">Fair</option>
                                 <option value="poor">Poor</option>
