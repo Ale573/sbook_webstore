@@ -1,91 +1,93 @@
-import React, { Component } from 'react';
-import { register } from './userRegister';
+import React, { Component } from "react";
+import { register } from "./userRegister";
 
 export class Register extends Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      username: '',
-      password: '',
-      confirm_password: '',
+      username: "",
+      password: "",
+      confirm_password: "",
       error_message: {},
       loading: false
-    }
+    };
   }
 
-  usernameChange = (e) => {
+  usernameChange = e => {
     this.setState({
-      username: e.target.value,
-    })
-  }
+      username: e.target.value
+    });
+  };
 
-  passwordChange = (e) => {
+  passwordChange = e => {
     this.setState({
-      password: e.target.value,
-    })
-  }
+      password: e.target.value
+    });
+  };
 
-  confirmPasswordChange = (e) => {
+  confirmPasswordChange = e => {
     this.setState({
-      confirm_password: e.target.value,
-    })
-  }
+      confirm_password: e.target.value
+    });
+  };
 
   fetchData = () => {
     this.setState({
       loading: true
-    })
+    });
 
     setTimeout(() => {
       this.setState({
         loading: false
-      })
-    }, 3000)
-  }
+      });
+    }, 3000);
+  };
 
-  onSubmit = (e) => {
-
+  onSubmit = e => {
     this.fetchData();
 
-    if(this.validateForm()) {
+    if (this.validateForm()) {
       const newUser = {
         username: this.state.username,
         password: this.state.password
-      }
-  
+      };
+
       register(newUser).then(res => {
         this.props.success();
-      })
+      });
     }
-  }
+  };
 
   validateForm = () => {
     let errors = {};
     let formIsValid = true;
 
-    if(!(this.state.username.length > 0)) {
+    if (!(this.state.username.length > 0)) {
       formIsValid = false;
       errors["username"] = "*Please enter your username.";
     }
 
-    if(!(this.state.password.length > 0)) {
+    if (!(this.state.password.length > 0)) {
       formIsValid = false;
       errors["password"] = "*Please enter your password.";
     }
 
-    if(this.state.password.length > 0 && this.state.password.length < 8) {
+    if (this.state.password.length > 0 && this.state.password.length < 8) {
       formIsValid = false;
       errors["password"] = "*Password must have at least 8 characters.";
     }
 
-    if(!(this.state.confirm_password.length > 0)) {
+    if (!(this.state.confirm_password.length > 0)) {
       formIsValid = false;
       errors["confirm_password"] = "*Please enter your password.";
     }
 
-    if(this.state.password.length > 0 && this.state.confirm_password.length > 0 && (this.state.password !== this.state.confirm_password)) {
+    if (
+      this.state.password.length > 0 &&
+      this.state.confirm_password.length > 0 &&
+      this.state.password !== this.state.confirm_password
+    ) {
       formIsValid = false;
       errors["confirm_password"] = "*Passwords are not equal.";
     }
@@ -95,7 +97,7 @@ export class Register extends Component {
     });
 
     return formIsValid;
-  }
+  };
 
   render() {
     return (
@@ -129,25 +131,26 @@ export class Register extends Component {
             onChange={this.confirmPasswordChange}
             value={this.state.confirm_password}
           />
-          <p className="error_message">{this.state.error_message.confirm_password}</p>
+          <p className="error_message">
+            {this.state.error_message.confirm_password}
+          </p>
 
-          {this.state.loading ?
-            <button
-              className="submit_button"
-              type="button">
+          {this.state.loading ? (
+            <button className="submit_button" type="button">
               Loading
             </button>
-            :
+          ) : (
             <button
               className="submit_button"
               type="button"
-              onClick={this.onSubmit}>
+              onClick={this.onSubmit}
+            >
               Register
             </button>
-          }
+          )}
         </form>
       </div>
-    )
+    );
   }
 }
 
