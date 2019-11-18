@@ -27,27 +27,25 @@ export class Header extends Component {
                         </Link>
                         <h1 className="header_title">S-Book Webstore</h1>
 
-                        <button
-                            className="logout_button"
-                            type="button"
-                            onClick={this.handleLogout}>
-                            Logout
-                        </button>
+                        <div className="dropdown">
+                            <img 
+                                className="user_icon"
+                                src={UserIcon}
+                                alt="User Logo"
+                                height="65"
+                                width="65"/>
+                            <div className="dropdown-content">
+                                <Link to="/profile" className="link">Profile</Link>
+                                <Link to="" className="link" onClick={this.handleLogout}>Logout</Link>
+                            </div>
+                        </div>
 
                         <Link to="/selling">
                             <button
-                                className="logout_button"
+                                className="button"
                                 type="button">
                                 Sell
                             </button>
-                        </Link>
-
-                        <Link to="/profile"><img 
-                            className="user_icon"
-                            src={UserIcon}
-                            alt="User Logo"
-                            height="65"
-                            width="65"/>
                         </Link>
                     </Fragment>
                 : 

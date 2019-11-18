@@ -57,7 +57,7 @@ export class Dash extends Component {
             <div>
                 <h1 className="welcome_message">Welcome <span style={span}>{this.state.username}</span>!</h1>
 
-                <h2 className="recommend_message">Here are some recommended Books!</h2>
+                <h2 className="recommend_message">Here are some Books!</h2>
 
                 {this.state.books.map( book =>
                 <Book

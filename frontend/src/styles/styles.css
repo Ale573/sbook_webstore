@@ -28,13 +28,7 @@
   text-shadow: 1px 3px 11px #000000;
 }
 
-.main_header .user_icon {
-  float: right;
-  margin: 40px 20px;
-  cursor: pointer;
-}
-
-.main_header .logout_button {
+.main_header .button {
   float: right;
   margin: 40px 30px;
   border: solid 1.5px #117c20;
@@ -47,10 +41,47 @@
   cursor: pointer;
 }
 
-.main_header .logout_button:hover {
+.main_header .button:hover {
   background-color: #105c1b;
   color: white;
   border: inset 1.5px black;
+}
+
+.main_header .dropdown {
+  display: block;
+  float: right;
+}
+
+.main_header .dropdown .user_icon {
+  margin: 40px 40px 0px 40px;
+  cursor: pointer;
+}
+
+.main_header .dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #DDF0E2;
+  min-width: 140px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.main_header .dropdown .dropdown-content .link {
+  display: block;
+  padding: 12px 16px;
+  font-size: 1.2em;
+  text-decoration: none;
+  color: black;
+}
+
+.main_header .dropdown .dropdown-content a:hover {
+  font-size: 1.2em;
+  color: #ffffff;
+  background-color: #117C20;
+}
+
+.main_header .dropdown:hover .dropdown-content {
+  display: block;
 }
 
 .home {
