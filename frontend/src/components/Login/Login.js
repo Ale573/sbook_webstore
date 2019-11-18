@@ -14,15 +14,9 @@ export class Login extends Component {
     };
   }
 
-  usernameChange = e => {
+  handleChange = input => e => {
     this.setState({
-      username: e.target.value
-    });
-  };
-
-  passwordChange = e => {
-    this.setState({
-      password: e.target.value
+      [input]: e.target.value
     });
   };
 
@@ -91,7 +85,7 @@ export class Login extends Component {
             className="input_box"
             type="text"
             name="username"
-            onChange={this.usernameChange}
+            onChange={this.handleChange('username')}
             value={this.state.username}
           />
           <p className="error_message">{this.state.error_message.username}</p>
@@ -101,7 +95,7 @@ export class Login extends Component {
             className="input_box"
             type="password"
             name="password"
-            onChange={this.passwordChange}
+            onChange={this.handleChange('password')}
             value={this.state.password}
           />
           <p className="error_message">{this.state.error_message.password}</p>

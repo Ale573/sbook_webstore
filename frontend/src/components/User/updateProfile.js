@@ -23,10 +23,10 @@ export class updateProfile extends Component {
   };
 
   onSubmit = e => {
-    const token = localStorage.usertoken;
-    const decoded = jwt_decode(token);
-
     if (this.validateForm()) {
+      const token = localStorage.usertoken;
+      const decoded = jwt_decode(token);
+
       const profile = {
         userId: decoded.identity.id,
         name: this.state.name,
