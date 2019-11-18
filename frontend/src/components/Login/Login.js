@@ -10,8 +10,7 @@ export class Login extends Component {
     this.state = {
       username: '',
       password: '',
-      error: false,
-      message: '',
+      error_message: {},
       loading: false,
     }
   }
@@ -44,7 +43,7 @@ export class Login extends Component {
 
         this.fetchData();
 
-        if(this.state.username.length > 0 && this.state.password.length > 0) {  
+        if(this.validateForm()) {  
 
           const user = {
             username: this.state.username,
@@ -56,19 +55,35 @@ export class Login extends Component {
               this.props.success();
             }
             else {
+              let errors = {};
+              errors["invalid"] = "*Invalid username or password.";
               this.setState({
-                error: true,
-                message: "Invalid username or password."
+                error_message: errors
               })
             }
           })
         }
-        else {
-            this.setState({
-                error: true,
-                message: "All fields are requiered."
-            })
+      }
+
+      validateForm = () => {
+        let errors = {};
+        let formIsValid = true;
+    
+        if(!(this.state.username.length > 0)) {
+          formIsValid = false;
+          errors["username"] = "*Please enter your username.";
         }
+    
+        if(!(this.state.password.length > 0)) {
+          formIsValid = false;
+          errors["password"] = "*Please enter your password.";
+        }
+    
+        this.setState({
+          error_message: errors
+        });
+    
+        return formIsValid;
       }
 
     render() {
@@ -83,6 +98,7 @@ export class Login extends Component {
                         onChange={this.usernameChange}
                         value={this.state.username}  
                     />
+                    <p className="error_message">{this.state.error_message.username}</p>
 
                     <label className="label_text">Password</label>
                     <input
@@ -92,14 +108,14 @@ export class Login extends Component {
                         onChange={this.passwordChange}
                         value={this.state.password} 
                     />
+                    <p className="error_message">{this.state.error_message.password}</p>
 
-                    <p className={this.state.error ? "error_message_active":"error_message"}>{this.state.message}</p>
+                    <p className="error_message">{this.state.error_message.invalid}</p>
 
                     {this.state.loading ? 
                       <button
                         className="submit_button"
-                        type="button"
-                        onClick={this.onSubmit}> 
+                        type="button"> 
                         Loading
                       </button>
                     :

@@ -166,17 +166,12 @@
     }
 
     .error_message {
-        display: none;
-    }
-
-    .error_message_active {
         display: block;
-        color: #202020;
+        color: #f80606;
         background-color: #ffffff80;
 
         border-radius: 10px;
 
-        text-align: center;
         font-size: 1.4em;
     }
 }
@@ -281,16 +276,23 @@
         }
 
         .error_message {
-            display: none;
-        }
-
-        .error_message_active {
             width: 220px;
             margin-top: 40px;
             margin-left: 60px;
             float: left;
             color: #202020;
 
+            font-size: 1.4em;
+        }
+
+        .error_message_active {
+            display: block;
+            color: #202020;
+            background-color: #ffffff80;
+    
+            border-radius: 10px;
+    
+            text-align: center;
             font-size: 1.4em;
         }
     }

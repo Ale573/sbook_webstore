@@ -10,8 +10,7 @@ export class Register extends Component {
       username: '',
       password: '',
       confirm_password: '',
-      error: false,
-      message: '',
+      error_message: {},
       loading: false
     }
   }
@@ -50,39 +49,52 @@ export class Register extends Component {
 
     this.fetchData();
 
-    if (this.state.username.length > 0 && this.state.password.length > 0 && this.state.confirm_password.length > 0) {
-      if (this.state.password.length >= 8) {
-        if (this.state.password === this.state.confirm_password) {
-
-          const newUser = {
-            username: this.state.username,
-            password: this.state.password
-          }
-
-          register(newUser).then(res => {
-            this.props.success();
-          })
-        }
-        else {
-          this.setState({
-            error: true,
-            message: "Passwords are not equal."
-          })
-        }
+    if(this.validateForm()) {
+      const newUser = {
+        username: this.state.username,
+        password: this.state.password
       }
-      else {
-        this.setState({
-          error: true,
-          message: "Password must have at least 8 characters."
-        })
-      }
-    }
-    else {
-      this.setState({
-        error: true,
-        message: "All fields are requiered."
+  
+      register(newUser).then(res => {
+        this.props.success();
       })
     }
+  }
+
+  validateForm = () => {
+    let errors = {};
+    let formIsValid = true;
+
+    if(!(this.state.username.length > 0)) {
+      formIsValid = false;
+      errors["username"] = "*Please enter your username.";
+    }
+
+    if(!(this.state.password.length > 0)) {
+      formIsValid = false;
+      errors["password"] = "*Please enter your password.";
+    }
+
+    if(this.state.password.length > 0 && this.state.password.length < 8) {
+      formIsValid = false;
+      errors["password"] = "*Password must have at least 8 characters.";
+    }
+
+    if(!(this.state.confirm_password.length > 0)) {
+      formIsValid = false;
+      errors["confirm_password"] = "*Please enter your password.";
+    }
+
+    if(this.state.password.length > 0 && this.state.confirm_password.length > 0 && (this.state.password !== this.state.confirm_password)) {
+      formIsValid = false;
+      errors["confirm_password"] = "*Passwords are not equal.";
+    }
+
+    this.setState({
+      error_message: errors
+    });
+
+    return formIsValid;
   }
 
   render() {
@@ -97,6 +109,7 @@ export class Register extends Component {
             onChange={this.usernameChange}
             value={this.state.username}
           />
+          <p className="error_message">{this.state.error_message.username}</p>
 
           <label className="label_text">Password</label>
           <input
@@ -106,6 +119,7 @@ export class Register extends Component {
             onChange={this.passwordChange}
             value={this.state.password}
           />
+          <p className="error_message">{this.state.error_message.password}</p>
 
           <label className="label_text">Confirm Password</label>
           <input
@@ -115,14 +129,12 @@ export class Register extends Component {
             onChange={this.confirmPasswordChange}
             value={this.state.confirm_password}
           />
-
-          <p className={this.state.error ? "error_message_active" : "error_message"}>{this.state.message}</p>
+          <p className="error_message">{this.state.error_message.confirm_password}</p>
 
           {this.state.loading ?
             <button
               className="submit_button"
-              type="button"
-              onClick={this.onSubmit}>
+              type="button">
               Loading
             </button>
             :

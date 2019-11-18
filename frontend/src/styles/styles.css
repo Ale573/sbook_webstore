@@ -150,15 +150,10 @@
 }
 
 .form_container .error_message {
-  display: none;
-}
-
-.form_container .error_message_active {
   display: block;
-  color: #202020;
+  color: #f80606;
   background-color: #ffffff80;
   border-radius: 10px;
-  text-align: center;
   font-size: 1.4em;
 }
 
@@ -250,15 +245,20 @@
 }
 
 .update_profile .profile_form .error_message, .update_profile .selling_form .error_message, .selling_book .profile_form .error_message, .selling_book .selling_form .error_message {
-  display: none;
-}
-
-.update_profile .profile_form .error_message_active, .update_profile .selling_form .error_message_active, .selling_book .profile_form .error_message_active, .selling_book .selling_form .error_message_active {
   width: 220px;
   margin-top: 40px;
   margin-left: 60px;
   float: left;
   color: #202020;
+  font-size: 1.4em;
+}
+
+.update_profile .profile_form .error_message_active, .update_profile .selling_form .error_message_active, .selling_book .profile_form .error_message_active, .selling_book .selling_form .error_message_active {
+  display: block;
+  color: #202020;
+  background-color: #ffffff80;
+  border-radius: 10px;
+  text-align: center;
   font-size: 1.4em;
 }
 
