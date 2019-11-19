@@ -124,11 +124,15 @@ export class Register extends Component {
           </p>
 
           {this.state.loading ? (
-            <button className="submit_button" type="button">
+            <button 
+              name="loading_button"
+              className="submit_button" 
+              type="button">
               Loading
             </button>
           ) : (
             <button
+              name="submit_button"
               className="submit_button"
               type="button"
               onClick={this.onSubmit}

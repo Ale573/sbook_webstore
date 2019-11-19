@@ -50,8 +50,8 @@ export class Home extends Component {
                 <div className="lr_background"></div>
                 <div className="lr_container">
                     <div className="title_container">
-                        <h2 className={this.state.login ? "section_title_active":"section_title"} onClick={this.changeLogin}>Login</h2>
-                        <h2 className={this.state.register ? "section_title_active":"section_title"} onClick={this.changeRegister}>Register</h2>
+                        <h2 id="login" className={this.state.login ? "section_title_active":"section_title"} onClick={this.changeLogin}>Login</h2>
+                        <h2 id="register" className={this.state.register ? "section_title_active":"section_title"} onClick={this.changeRegister}>Register</h2>
                     </div>
 
                     <div className="lr_component_container">
