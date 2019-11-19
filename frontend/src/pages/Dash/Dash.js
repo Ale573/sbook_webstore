@@ -1,5 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import jwt_decode from 'jwt-decode';
+import Search from '../../components/Search/Search'; 
+import { searchInput } from "../../components/Search/searchFunction";
+
 
 import Cover from './images/booktest.jpg';
 import Book from '../../components/Book/Book';
@@ -13,6 +16,8 @@ export class Dash extends Component {
             id: '',
             username: '',
             status: '',
+            search : false,
+            searchData: [],
 
             books:[
                 {
@@ -52,11 +57,33 @@ export class Dash extends Component {
         })
     }
 
+    searchActive = () => {
+        if (this.state.search === false){
+            this.setState({
+                search: true
+            })
+        } else{
+            this.setState({
+                search: false
+            })
+        }
+    }
+
+    getSearchData = () => {
+        searchInput(this.state.query).then(res => {
+            this.setState({
+                searchData: res
+            })
+        })
+    }
+
     render() {
         return (
             <div>
+                <Search searchActive = {this.searchActive} getSearchData = {this.getSearchData}/>
+                
                 <h1 className="welcome_message">Welcome <span style={span}>{this.state.username}</span>!</h1>
-
+                
                 <h2 className="recommend_message">Here are some recommended Books!</h2>
 
                 {this.state.books.map( book =>
