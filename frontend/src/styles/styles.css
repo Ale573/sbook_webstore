@@ -235,7 +235,8 @@
 }
 
 .update_profile, .selling_book {
-  margin-left: 50px;
+  width: 540px;
+  margin: 0 auto;
 }
 
 .update_profile .profile_form .label_text, .update_profile .selling_form .label_text, .selling_book .profile_form .label_text, .selling_book .selling_form .label_text {
@@ -257,7 +258,7 @@
 
 .update_profile .profile_form .submit_button, .update_profile .selling_form .submit_button, .selling_book .profile_form .submit_button, .selling_book .selling_form .submit_button {
   float: left;
-  margin: 20px 0px;
+  margin: 20px 30px 20px 0px;
   border: solid 1px #117c20;
   background-color: #117c20;
   color: white;

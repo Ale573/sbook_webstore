@@ -268,7 +268,8 @@
 
 //Update Profile CSS
 .update_profile, .selling_book {
-    margin-left: 50px;
+    width: 540px;
+    margin: 0 auto;
 
     .profile_form, .selling_form {
         
@@ -291,7 +292,7 @@
 
         .submit_button {
             float: left;
-            margin: 20px 0px;
+            margin: 20px 30px 20px 0px;
             border: solid 1px #117c20;
             background-color: #117c20;
             color: white;

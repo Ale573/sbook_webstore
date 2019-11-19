@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import jwt_decode from "jwt-decode";
 import { sellingBook } from "./sellingFunction";
 
@@ -20,7 +20,9 @@ export class SellingBook extends Component {
       cash: false,
       cards: false,
 
-      error_message: {}
+      error_message: {},
+
+      step: 1
     };
   }
 
@@ -60,6 +62,18 @@ export class SellingBook extends Component {
     } else {
       this.setState({ cards: false });
     }
+  };
+
+  nextStep = e => {
+    this.setState({
+      step: this.state.step + 1
+    });
+  };
+
+  prevStep = e => {
+    this.setState({
+      step: this.state.step - 1
+    });
   };
 
   onSubmit = e => {
@@ -133,13 +147,13 @@ export class SellingBook extends Component {
     }
 
     if (!(this.state.condition.length > 0)) {
-        formIsValid = false;
-        errors["condition"] = "*Please choose one condition.";
+      formIsValid = false;
+      errors["condition"] = "*Please choose one condition.";
     }
 
     if (this.state.cash === false && this.state.cards === false) {
-        formIsValid = false;
-        errors["payment"] = "*Please choose at least one payment method.";
+      formIsValid = false;
+      errors["payment"] = "*Please choose at least one payment method.";
     }
 
     this.setState({
@@ -155,141 +169,171 @@ export class SellingBook extends Component {
         <h1 className="header_title">Selling Book Form</h1>
 
         <form className="selling_form">
-          <label className="label_text">Book Name</label>
-          <input
-            className="input_box"
-            type="text"
-            name="book_name"
-            onChange={this.handleChange("name")}
-            value={this.state.name}
-          />
-          <p className="error_message">{this.state.error_message.name}</p>
+          {this.state.step === 1 ? (
+            <Fragment>
+              <h2 className="">Step 1 of 2</h2>
+              <label className="label_text">Book Name</label>
+              <input
+                className="input_box"
+                type="text"
+                name="book_name"
+                onChange={this.handleChange("name")}
+                value={this.state.name}
+              />
+              <p className="error_message">{this.state.error_message.name}</p>
 
-          <label className="label_text">Author</label>
-          <input
-            className="input_box"
-            type="text"
-            name="author"
-            onChange={this.handleChange("author")}
-            value={this.state.author}
-          />
-          <p className="error_message">{this.state.error_message.author}</p>
+              <label className="label_text">Author</label>
+              <input
+                className="input_box"
+                type="text"
+                name="author"
+                onChange={this.handleChange("author")}
+                value={this.state.author}
+              />
+              <p className="error_message">{this.state.error_message.author}</p>
 
-          <label className="label_text">Year</label>
-          <input
-            className="input_box"
-            type="text"
-            name="year"
-            onChange={this.handleChange("year")}
-            value={this.state.year}
-          />
-          <p className="error_message">{this.state.error_message.year}</p>
+              <label className="label_text">Year</label>
+              <input
+                className="input_box"
+                type="text"
+                name="year"
+                onChange={this.handleChange("year")}
+                value={this.state.year}
+              />
+              <p className="error_message">{this.state.error_message.year}</p>
 
-          <label className="label_text">Edition</label>
-          <input
-            className="input_box"
-            type="text"
-            name="edition"
-            onChange={this.handleChange("edition")}
-            value={this.state.edition}
-          />
-          <p className="error_message">{this.state.error_message.edition}</p>
+              <label className="label_text">Edition</label>
+              <input
+                className="input_box"
+                type="text"
+                name="edition"
+                onChange={this.handleChange("edition")}
+                value={this.state.edition}
+              />
+              <p className="error_message">
+                {this.state.error_message.edition}
+              </p>
 
-          <label className="label_text">ISBN Number</label>
-          <input
-            className="input_box"
-            type="text"
-            name="isbn"
-            onChange={this.handleChange("isbn")}
-            value={this.state.isbn}
-          />
-          <p className="error_message">{this.state.error_message.isbn}</p>
+              <label className="label_text">ISBN Number</label>
+              <input
+                className="input_box"
+                type="text"
+                name="isbn"
+                onChange={this.handleChange("isbn")}
+                value={this.state.isbn}
+              />
+              <p className="error_message">{this.state.error_message.isbn}</p>
 
-          <label className="label_text">Price</label>
-          <input
-            className="input_box"
-            type="text"
-            name="price"
-            onChange={this.handleChange("price")}
-            value={this.state.price}
-          />
-          <p className="error_message">{this.state.error_message.price}</p>
+              <button
+                className="submit_button"
+                type="button"
+                onClick={this.nextStep}
+              >
+                Next
+              </button>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <h2 className="">Step 2 of 2</h2>
+              <label className="label_text">Price</label>
+              <input
+                className="input_box"
+                type="text"
+                name="price"
+                onChange={this.handleChange("price")}
+                value={this.state.price}
+              />
+              <p className="error_message">{this.state.error_message.price}</p>
 
-          <div className="select_condition">
-            <label className="label_text">Condition:</label>
-            <select
-              className="input_select"
-              onChange={this.handleChange('condition')}
-              value={this.state.condition}
-            >
-              <option value="">- Select -</option>
-              <option value="as_new">As new</option>
-              <option value="good">Good</option>
-              <option value="fair">Fair</option>
-              <option value="poor">Poor</option>
-            </select>
-          </div>
-          <p className="error_message">{this.state.error_message.condition}</p>
+              <div className="select_condition">
+                <label className="label_text">Condition:</label>
+                <select
+                  className="input_select"
+                  onChange={this.handleChange("condition")}
+                  value={this.state.condition}
+                >
+                  <option value="">- Select -</option>
+                  <option value="as_new">As new</option>
+                  <option value="good">Good</option>
+                  <option value="fair">Fair</option>
+                  <option value="poor">Poor</option>
+                </select>
+              </div>
+              <p className="error_message">
+                {this.state.error_message.condition}
+              </p>
 
-          <div className="checkbox_division">
-            <input
-              className="checkbox"
-              type="checkbox"
-              name="offer"
-              id="offer"
-              onChange={this.offerChange}
-            />
-            <label className="checkbox_text" htmlFor="offer">
-              Offer Option
-            </label>
-          </div>
+              <div className="checkbox_division">
+                <input
+                  className="checkbox"
+                  type="checkbox"
+                  name="offer"
+                  id="offer"
+                  onChange={this.offerChange}
+                />
+                <label className="checkbox_text" htmlFor="offer">
+                  Offer Option
+                </label>
+              </div>
 
-          <div className="checkbox_division">
-            <input
-              className="checkbox"
-              type="checkbox"
-              name="return_policy"
-              id="return_policy"
-              onChange={this.returnChange}
-            />
-            <label className="checkbox_text" htmlFor="return_policy">
-              Return Option
-            </label>
-          </div>
+              <div className="checkbox_division">
+                <input
+                  className="checkbox"
+                  type="checkbox"
+                  name="return_policy"
+                  id="return_policy"
+                  onChange={this.returnChange}
+                />
+                <label className="checkbox_text" htmlFor="return_policy">
+                  Return Option
+                </label>
+              </div>
 
-          <div className="checkbox_division">
-            <label className="label_text">Select the payment method:</label>
-            <input
-              className="checkbox"
-              type="checkbox"
-              name="cash"
-              id="cash"
-              onChange={this.cashChange}
-            />
-            <label className="checkbox_text" htmlFor="cash">
-              Cash
-            </label>
+              <div className="checkbox_division">
+                <label className="label_text">Select the payment method:</label>
+                <input
+                  className="checkbox"
+                  type="checkbox"
+                  name="cash"
+                  id="cash"
+                  onChange={this.cashChange}
+                />
+                <label className="checkbox_text" htmlFor="cash">
+                  Cash
+                </label>
 
-            <input
-              className="checkbox"
-              type="checkbox"
-              name="cards"
-              id="cards"
-              onChange={this.cardsChange}
-            />
-            <label className="checkbox_text" htmlFor="cards">
-              Cards
-            </label>
-          </div>
-          <p className="error_message">{this.state.error_message.payment}</p>
+                <input
+                  className="checkbox"
+                  type="checkbox"
+                  name="cards"
+                  id="cards"
+                  onChange={this.cardsChange}
+                />
+                <label className="checkbox_text" htmlFor="cards">
+                  Cards
+                </label>
+              </div>
+              <p className="error_message">
+                {this.state.error_message.payment}
+              </p>
 
-          <button
-            className="submit_button"
-            type="button"
-            onClick={this.onSubmit}
-          >
-            Submit
-          </button>
+              <button
+                className="submit_button"
+                type="button"
+                onClick={this.prevStep}
+              >
+                Back
+              </button>
+
+              <button
+                className="submit_button"
+                type="button"
+                onClick={this.onSubmit}
+              >
+                Submit
+              </button>
+            </Fragment>
+          )}
         </form>
       </div>
     );
