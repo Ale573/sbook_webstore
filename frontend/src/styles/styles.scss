@@ -31,13 +31,7 @@
         text-shadow: 1px 3px 11px #000000;
     }
 
-    .user_icon {
-        float: right;
-        margin: 40px 20px;
-        cursor: pointer;
-    }
-
-    .logout_button {
+    .button {
         float: right;
         margin: 40px 30px;
         border: solid 1.5px #117c20;
@@ -50,10 +44,50 @@
         cursor: pointer;
     }
     
-    .logout_button:hover {
+    .button:hover {
         background-color:  #105c1b;
         color: white;
         border: inset 1.5px black;
+    }
+
+    .dropdown {
+        display: block;
+        float: right;
+
+        .user_icon {
+            margin: 40px 40px 0px 40px;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #DDF0E2;
+            min-width: 140px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+
+            .link {
+                display: block;
+                padding: 12px 16px;
+
+                font-size: 1.2em;
+                text-decoration: none;
+                
+                color: black;
+            }
+        }
+
+        .dropdown-content a:hover {
+            font-size: 1.2em;
+
+            color:#ffffff;
+            background-color: #117C20;
+        }
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
     }
 }
 //Home CSS
@@ -166,49 +200,44 @@
     }
 
     .error_message {
-        display: none;
-    }
-
-    .error_message_active {
         display: block;
-        color: #202020;
+        color: #f80606;
         background-color: #ffffff80;
 
         border-radius: 10px;
 
-        text-align: center;
         font-size: 1.4em;
     }
 }
 //Dash CSS
 .welcome_message {
+    margin-top: 50px;
     margin-left: 30px;
 }
 
-.recommend_message {
-    margin-left: 30px;
-}
 //Book CSS
-.book_container {
-    float: left;
-    margin: 40px 65px;
-    padding: 10px;
-    border: 1px solid transparent;
-
-    .book_cover {
-        border-radius: 5px;
+.book {
+    .book_container {
+        float: left;
+        margin: 40px 65px;
+        padding: 10px;
+        border: 1px solid transparent;
+    
+        .book_cover {
+            border-radius: 5px;
+        }
+    
+        .book_name {
+            text-align: center;
+            font-size: 1.3em;
+        }
     }
-
-    .book_name {
-        text-align: center;
-        font-size: 1.3em;
+    
+    .book_container:hover {
+        border: 1px solid #105c1b;
+        border-radius: 10px;
+        cursor: pointer;
     }
-}
-
-.book_container:hover {
-    border: 1px solid #105c1b;
-    border-radius: 10px;
-    cursor: pointer;
 }
 
 //Profile CSS
@@ -217,29 +246,24 @@
     .profile_title {
         width: 250px;
         margin: 30px 20px;
-    
-        //border: 1px solid black;
     }
 
     .user_link {
         width: 50px;
         font-size: .7em;
         color: gray;
-
-        //border: 1px solid black;
     }
 
     .user_profile_item {
         width: 700px;
         margin: 10px 60px;
-
-        //border: 1px solid black;
     }
 }
 
 //Update Profile CSS
 .update_profile, .selling_book {
-    margin-left: 50px;
+    width: 540px;
+    margin: 0 auto;
 
     .profile_form, .selling_form {
         
@@ -262,7 +286,7 @@
 
         .submit_button {
             float: left;
-            margin: 20px 0px;
+            margin: 20px 30px 20px 0px;
             border: solid 1px #117c20;
             background-color: #117c20;
             color: white;
@@ -281,22 +305,18 @@
         }
 
         .error_message {
-            display: none;
-        }
-
-        .error_message_active {
-            width: 220px;
-            margin-top: 40px;
-            margin-left: 60px;
-            float: left;
-            color: #202020;
-
+            display: block;
+            color: #f80606;
+            background-color: #ffffff80;
+    
+            border-radius: 10px;
+    
             font-size: 1.4em;
         }
     }
 }
 
-//Selling Book 
+//Selling Book CSS
 .selling_book {
 
     .selling_form {
@@ -324,6 +344,56 @@
             margin: 10px 10px;
             border: solid 1px #105c1b;
             border-radius: 10px;
+        }
+    }
+}
+
+// Search CSS
+.search {
+    .search_form {
+        width: 540px;
+        margin-left: 100px;
+        margin-top: 250px;
+
+        .input_box {
+            display: block;
+            margin: 10px 0px;
+            width: 500px;
+            height: 50px;
+            border: solid 1px #105c1b;
+            border-radius: 10px;
+            box-shadow: 1px 1px 8px #1a912c;
+            font-size: 1.4em;
+        }
+
+        .submit_button {
+            float: left;
+            margin: 20px 30px 20px 0px;
+            border: solid 1px #117c20;
+            background-color: #117c20;
+            color: white;
+            border: 1.5px solid #117c20;
+            border-radius: 8px;
+            box-shadow: 1px 1px 6px black;
+            padding: 18px 32px;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        
+        .submit_button:hover {
+            background-color:  #105c1b;
+            color: white;
+            border: inset 1.5px black;
+        }
+
+        .error_message {
+            display: block;
+            color: #f80606;
+            background-color: #ffffff80;
+    
+            border-radius: 10px;
+    
+            font-size: 1.4em;
         }
     }
 }

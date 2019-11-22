@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { searchInput } from "./searchFunction";
+//import { searchInput } from "./searchFunction";
 import SearchResults from "./SearchResults";
 
 class Search extends Component {
   state = {
     query: "",
     data: [],
-    error_message: {}
+    error_message: {}, 
   };
 
   handleChange = e => {
@@ -19,11 +19,11 @@ class Search extends Component {
     let errors = {};
     let formIsValid = true;
 
-    if(!(this.state.query.length > 0)) {
+    if (!(this.state.query.length > 0)) {
       formIsValid = false;
       errors["query"] = "*Please enter what you want to search.";
       this.setState({
-          data: []
+        data: []
       });
     }
 
@@ -35,36 +35,26 @@ class Search extends Component {
   };
 
   onSubmit = e => {
+    let books = [
+      {
+        'id': '1',
+        'name': 'Skyscraping',
+        'image': 'skyscraping.jpg'
+      },
+      {
+        'id': '2',
+        'name': 'The Fault in our Stars',
+        'image': 'tfios.jpg'
+      }
+    ];
+
     if (this.validateForm()) {
-        let books = [
-            {
-                'id': '0',
-                'name':'Cell Biology',
-                'author': 'Author 1',
-                'year': '2000'
-            },
-            {
-                'id': '1',
-                'name':'Cell Biology',
-                'author': 'Author 2',
-                'year': '2001'
-            },
-            {
-                'id': '2',
-                'name':'Cell Biology',
-                'author': 'Author 3',
-                'year': '2002'
-            },
-            {
-                'id': '3',
-                'name':'Cell Biology',
-                'author': 'Author 4',
-                'year': '2003'
-            }
-        ]
-        this.setState({
-            data: books
-        })
+      if(this.props.search === false) {
+        this.props.searchActive();
+      }
+      this.setState({
+        data: books
+      })
       // searchInput(this.state.query).then(res => {
       //     this.setState({
       //         data: res
@@ -75,23 +65,24 @@ class Search extends Component {
 
   render() {
     return (
-      <div className="searchForm">
-        <form>
+      <div className="search">
+        <form className="search_form">
           <input
+          className="input_box"
             type="search"
             id="filter"
             placeholder="Search for..."
             onChange={this.handleChange}
             value={this.state.query}
           />
-          <button className="" type="button" onClick={this.onSubmit}>
+
+          <p className="error_message">{this.state.error_message.query}</p>
+
+          <button className="submit_button" type="button" onClick={this.onSubmit}>
             Search
           </button>
         </form>
-
-        {this.state.data.length > 0 && 
-            <SearchResults data={this.state.data}/>
-        }
+        <SearchResults data={this.state.data} />
       </div>
     );
   }

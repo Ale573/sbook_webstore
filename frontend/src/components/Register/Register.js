@@ -1,89 +1,91 @@
-import React, { Component } from 'react';
-import { register } from './userRegister';
+import React, { Component } from "react";
+import { register } from "./userRegister";
 
 export class Register extends Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      username: '',
-      password: '',
-      confirm_password: '',
-      error: false,
-      message: '',
+      username: "",
+      password: "",
+      confirm_password: "",
+      error_message: {},
       loading: false
-    }
+    };
   }
 
-  usernameChange = (e) => {
+  handleChange = input => e => {
     this.setState({
-      username: e.target.value,
-    })
-  }
-
-  passwordChange = (e) => {
-    this.setState({
-      password: e.target.value,
-    })
-  }
-
-  confirmPasswordChange = (e) => {
-    this.setState({
-      confirm_password: e.target.value,
-    })
-  }
+      [input]: e.target.value
+    });
+  };
 
   fetchData = () => {
     this.setState({
       loading: true
-    })
+    });
 
     setTimeout(() => {
       this.setState({
         loading: false
-      })
-    }, 3000)
-  }
+      });
+    }, 3000);
+  };
 
-  onSubmit = (e) => {
-
+  onSubmit = e => {
     this.fetchData();
 
-    if (this.state.username.length > 0 && this.state.password.length > 0 && this.state.confirm_password.length > 0) {
-      if (this.state.password.length >= 8) {
-        if (this.state.password === this.state.confirm_password) {
+    if (this.validateForm()) {
+      const newUser = {
+        username: this.state.username,
+        password: this.state.password
+      };
 
-          const newUser = {
-            username: this.state.username,
-            password: this.state.password
-          }
+      register(newUser).then(res => {
+        this.props.success();
+      });
+    }
+  };
 
-          register(newUser).then(res => {
-            this.props.success();
-          })
-        }
-        else {
-          this.setState({
-            error: true,
-            message: "Passwords are not equal."
-          })
-        }
-      }
-      else {
-        this.setState({
-          error: true,
-          message: "Password must have at least 8 characters."
-        })
-      }
+  validateForm = () => {
+    let errors = {};
+    let formIsValid = true;
+
+    if (!(this.state.username.length > 0)) {
+      formIsValid = false;
+      errors["username"] = "*Please enter your username.";
     }
-    else {
-      this.setState({
-        error: true,
-        message: "All fields are requiered."
-      })
+
+    if (!(this.state.password.length > 0)) {
+      formIsValid = false;
+      errors["password"] = "*Please enter your password.";
     }
-  }
+
+    if (this.state.password.length > 0 && this.state.password.length < 8) {
+      formIsValid = false;
+      errors["password"] = "*Password must have at least 8 characters.";
+    }
+
+    if (!(this.state.confirm_password.length > 0)) {
+      formIsValid = false;
+      errors["confirm_password"] = "*Please enter your password.";
+    }
+
+    if (
+      this.state.password.length > 0 &&
+      this.state.confirm_password.length > 0 &&
+      this.state.password !== this.state.confirm_password
+    ) {
+      formIsValid = false;
+      errors["confirm_password"] = "*Passwords are not equal.";
+    }
+
+    this.setState({
+      error_message: errors
+    });
+
+    return formIsValid;
+  };
 
   render() {
     return (
@@ -94,48 +96,53 @@ export class Register extends Component {
             className="input_box"
             type="text"
             name="username"
-            onChange={this.usernameChange}
+            onChange={this.handleChange('username')}
             value={this.state.username}
           />
+          <p className="error_message">{this.state.error_message.username}</p>
 
           <label className="label_text">Password</label>
           <input
             className="input_box"
             type="password"
             name="password"
-            onChange={this.passwordChange}
+            onChange={this.handleChange('password')}
             value={this.state.password}
           />
+          <p className="error_message">{this.state.error_message.password}</p>
 
           <label className="label_text">Confirm Password</label>
           <input
             className="input_box"
             type="password"
             name="confirm_password"
-            onChange={this.confirmPasswordChange}
+            onChange={this.handleChange('confirm_password')}
             value={this.state.confirm_password}
           />
+          <p className="error_message">
+            {this.state.error_message.confirm_password}
+          </p>
 
-          <p className={this.state.error ? "error_message_active" : "error_message"}>{this.state.message}</p>
-
-          {this.state.loading ?
-            <button
-              className="submit_button"
-              type="button"
-              onClick={this.onSubmit}>
+          {this.state.loading ? (
+            <button 
+              name="loading_button"
+              className="submit_button" 
+              type="button">
               Loading
             </button>
-            :
+          ) : (
             <button
+              name="submit_button"
               className="submit_button"
               type="button"
-              onClick={this.onSubmit}>
+              onClick={this.onSubmit}
+            >
               Register
             </button>
-          }
+          )}
         </form>
       </div>
-    )
+    );
   }
 }
 

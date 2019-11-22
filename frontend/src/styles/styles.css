@@ -28,13 +28,7 @@
   text-shadow: 1px 3px 11px #000000;
 }
 
-.main_header .user_icon {
-  float: right;
-  margin: 40px 20px;
-  cursor: pointer;
-}
-
-.main_header .logout_button {
+.main_header .button {
   float: right;
   margin: 40px 30px;
   border: solid 1.5px #117c20;
@@ -47,10 +41,47 @@
   cursor: pointer;
 }
 
-.main_header .logout_button:hover {
+.main_header .button:hover {
   background-color: #105c1b;
   color: white;
   border: inset 1.5px black;
+}
+
+.main_header .dropdown {
+  display: block;
+  float: right;
+}
+
+.main_header .dropdown .user_icon {
+  margin: 40px 40px 0px 40px;
+  cursor: pointer;
+}
+
+.main_header .dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #DDF0E2;
+  min-width: 140px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.main_header .dropdown .dropdown-content .link {
+  display: block;
+  padding: 12px 16px;
+  font-size: 1.2em;
+  text-decoration: none;
+  color: black;
+}
+
+.main_header .dropdown .dropdown-content a:hover {
+  font-size: 1.2em;
+  color: #ffffff;
+  background-color: #117C20;
+}
+
+.main_header .dropdown:hover .dropdown-content {
+  display: block;
 }
 
 .home {
@@ -150,43 +181,35 @@
 }
 
 .form_container .error_message {
-  display: none;
-}
-
-.form_container .error_message_active {
   display: block;
-  color: #202020;
+  color: #f80606;
   background-color: #ffffff80;
   border-radius: 10px;
-  text-align: center;
   font-size: 1.4em;
 }
 
 .welcome_message {
+  margin-top: 50px;
   margin-left: 30px;
 }
 
-.recommend_message {
-  margin-left: 30px;
-}
-
-.book_container {
+.book .book_container {
   float: left;
   margin: 40px 65px;
   padding: 10px;
   border: 1px solid transparent;
 }
 
-.book_container .book_cover {
+.book .book_container .book_cover {
   border-radius: 5px;
 }
 
-.book_container .book_name {
+.book .book_container .book_name {
   text-align: center;
   font-size: 1.3em;
 }
 
-.book_container:hover {
+.book .book_container:hover {
   border: 1px solid #105c1b;
   border-radius: 10px;
   cursor: pointer;
@@ -209,7 +232,8 @@
 }
 
 .update_profile, .selling_book {
-  margin-left: 50px;
+  width: 540px;
+  margin: 0 auto;
 }
 
 .update_profile .profile_form .label_text, .update_profile .selling_form .label_text, .selling_book .profile_form .label_text, .selling_book .selling_form .label_text {
@@ -231,7 +255,7 @@
 
 .update_profile .profile_form .submit_button, .update_profile .selling_form .submit_button, .selling_book .profile_form .submit_button, .selling_book .selling_form .submit_button {
   float: left;
-  margin: 20px 0px;
+  margin: 20px 30px 20px 0px;
   border: solid 1px #117c20;
   background-color: #117c20;
   color: white;
@@ -250,15 +274,10 @@
 }
 
 .update_profile .profile_form .error_message, .update_profile .selling_form .error_message, .selling_book .profile_form .error_message, .selling_book .selling_form .error_message {
-  display: none;
-}
-
-.update_profile .profile_form .error_message_active, .update_profile .selling_form .error_message_active, .selling_book .profile_form .error_message_active, .selling_book .selling_form .error_message_active {
-  width: 220px;
-  margin-top: 40px;
-  margin-left: 60px;
-  float: left;
-  color: #202020;
+  display: block;
+  color: #f80606;
+  background-color: #ffffff80;
+  border-radius: 10px;
   font-size: 1.4em;
 }
 
@@ -285,4 +304,49 @@
   margin: 10px 10px;
   border: solid 1px #105c1b;
   border-radius: 10px;
+}
+
+.search .search_form {
+  width: 540px;
+  margin-left: 100px;
+  margin-top: 250px;
+}
+
+.search .search_form .input_box {
+  display: block;
+  margin: 10px 0px;
+  width: 500px;
+  height: 50px;
+  border: solid 1px #105c1b;
+  border-radius: 10px;
+  box-shadow: 1px 1px 8px #1a912c;
+  font-size: 1.4em;
+}
+
+.search .search_form .submit_button {
+  float: left;
+  margin: 20px 30px 20px 0px;
+  border: solid 1px #117c20;
+  background-color: #117c20;
+  color: white;
+  border: 1.5px solid #117c20;
+  border-radius: 8px;
+  box-shadow: 1px 1px 6px black;
+  padding: 18px 32px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.search .search_form .submit_button:hover {
+  background-color: #105c1b;
+  color: white;
+  border: inset 1.5px black;
+}
+
+.search .search_form .error_message {
+  display: block;
+  color: #f80606;
+  background-color: #ffffff80;
+  border-radius: 10px;
+  font-size: 1.4em;
 }
