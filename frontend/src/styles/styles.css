@@ -189,7 +189,8 @@
 }
 
 .welcome_message {
-  margin-top: 50px;
+  width: 300px;
+  float: left;
   margin-left: 30px;
 }
 
@@ -307,14 +308,15 @@
 }
 
 .search .search_form {
-  width: 540px;
-  margin-left: 100px;
-  margin-top: 250px;
+  width: 680px;
+  height: 120px;
+  margin: 20px auto;
 }
 
 .search .search_form .input_box {
   display: block;
-  margin: 10px 0px;
+  float: left;
+  margin: 5px 20px 0px 0px;
   width: 500px;
   height: 50px;
   border: solid 1px #105c1b;
@@ -325,7 +327,7 @@
 
 .search .search_form .submit_button {
   float: left;
-  margin: 20px 30px 20px 0px;
+  margin-right: 30px;
   border: solid 1px #117c20;
   background-color: #117c20;
   color: white;
@@ -333,7 +335,7 @@
   border-radius: 8px;
   box-shadow: 1px 1px 6px black;
   padding: 18px 32px;
-  font-size: 1.5em;
+  font-size: 1.2em;
   cursor: pointer;
 }
 

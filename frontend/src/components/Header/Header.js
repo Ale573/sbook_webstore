@@ -12,13 +12,18 @@ export class Header extends Component {
         this.props.history.push('/');
     }
 
+    reload = async (e) => {
+        this.props.history.push("/dash");
+        window.location.reload();
+    }
+
     render() {
         return (
             <header className="main_header">
 
                 {Auth.isUserAuthenticated() ? 
                     <Fragment>
-                        <Link to="/dash"><img 
+                        <Link to="/dash" onClick={this.reload}><img 
                             className="logo" 
                             src={Logo} 
                             alt="Book Logo" 

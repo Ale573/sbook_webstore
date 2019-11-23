@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
+
 import { searchInput } from "./searchFunction";
 import SearchResults from "./SearchResults";
 
@@ -22,9 +24,6 @@ class Search extends Component {
     if (!(this.state.query.length > 0)) {
       formIsValid = false;
       errors["query"] = "*Please enter what you want to search.";
-      this.setState({
-        data: []
-      });
     }
 
     this.setState({
@@ -70,15 +69,16 @@ class Search extends Component {
             value={this.state.query}
           />
 
-          <p className="error_message">{this.state.error_message.query}</p>
-
-          <button
+          <Link to="/dash/search"><button
             className="submit_button"
             type="button"
             onClick={this.onSubmit}
           >
             Search
-          </button>
+          </button></Link>
+
+          <p className="error_message">{this.state.error_message.query}</p>
+
         </form>
         <SearchResults data={this.state.data} />
       </div>

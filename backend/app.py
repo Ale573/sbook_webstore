@@ -189,21 +189,17 @@ def searchInput():
     data = request.get_json()["input"]
     data = "%" + data + "%"
 
-    print(data)
-
     # Get data from database
     query = "SELECT * FROM books where name LIKE %s" 
     cursor.execute(query,(data))
     data = cursor.fetchall()
     data = list(data)
 
-    print(data)
-
     if data != None and len(data) != 0:
         return json.dumps(data), 200
 
     else:
-        return jsonify({"msg" : "There is no match."}), 401
+        return jsonify({"msg" : "*There is no match."}), 401
 
 if __name__ == '__main__':
     app.run(debug = True)
