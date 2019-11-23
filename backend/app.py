@@ -177,5 +177,33 @@ def sellingBook():
 
     return jsonify({'status': 'Submited'}), 200
 
+# Search function 
+@app.route("/searchInput", methods = ["POST"])
+def searchInput(): 
+
+    # Connect database
+    conn = mysql.connect()
+    cursor = conn.cursor()
+
+    #Read data from GUI
+    data = request.get_json()["input"]
+    data = "%" + data + "%"
+
+    print(data)
+
+    # Get data from database
+    query = "SELECT * FROM books where name LIKE %s" 
+    cursor.execute(query,(data))
+    data = cursor.fetchall()
+    data = list(data)
+
+    print(data)
+
+    if data != None and len(data) != 0:
+        return json.dumps(data), 200
+
+    else:
+        return jsonify({"msg" : "There is no match."}), 401
+
 if __name__ == '__main__':
     app.run(debug = True)

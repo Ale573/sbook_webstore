@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import jwt_decode from 'jwt-decode';
 import Search from '../../components/Search/Search'; 
-import Book from '../../components/Book/Book';
+//import Book from '../../components/Book/Book';
 
 export class Dash extends Component {       
                 

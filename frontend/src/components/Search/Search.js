@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-//import { searchInput } from "./searchFunction";
+import { searchInput } from "./searchFunction";
 import SearchResults from "./SearchResults";
 
 class Search extends Component {
   state = {
     query: "",
     data: [],
-    error_message: {}, 
+    error_message: {}
   };
 
   handleChange = e => {
@@ -35,31 +35,25 @@ class Search extends Component {
   };
 
   onSubmit = e => {
-    let books = [
-      {
-        'id': '1',
-        'name': 'Skyscraping',
-        'image': 'skyscraping.jpg'
-      },
-      {
-        'id': '2',
-        'name': 'The Fault in our Stars',
-        'image': 'tfios.jpg'
-      }
-    ];
 
     if (this.validateForm()) {
-      if(this.props.search === false) {
+      if (this.props.search === false) {
         this.props.searchActive();
       }
-      this.setState({
-        data: books
-      })
-      // searchInput(this.state.query).then(res => {
-      //     this.setState({
-      //         data: res
-      //     })
-      // })
+
+      searchInput(this.state.query).then(res => {
+        if (res.status === 200) {
+          this.setState({
+            data: res.data
+          });
+        } else {
+          let errors = {};
+          errors["query"] = res.data["msg"];
+          this.setState({
+            error_message: errors
+          });
+        }
+      });
     }
   };
 
@@ -68,7 +62,7 @@ class Search extends Component {
       <div className="search">
         <form className="search_form">
           <input
-          className="input_box"
+            className="input_box"
             type="search"
             id="filter"
             placeholder="Search for..."
@@ -78,7 +72,11 @@ class Search extends Component {
 
           <p className="error_message">{this.state.error_message.query}</p>
 
-          <button className="submit_button" type="button" onClick={this.onSubmit}>
+          <button
+            className="submit_button"
+            type="button"
+            onClick={this.onSubmit}
+          >
             Search
           </button>
         </form>

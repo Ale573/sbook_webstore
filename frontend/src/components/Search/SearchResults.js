@@ -7,7 +7,7 @@ export class SearchResults extends Component {
     return (
       <div>
         {this.props.data.map(book => (
-          <Book key={book.id} id={book.id} name={book.name} image={book.image} />
+          <Book key={book[0]} id={book[0]} name={book[3]} image={book[2]} />
         ))}
       </div>
     );
