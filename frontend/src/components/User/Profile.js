@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 import Book from '../Book/Book';
 import { getUserProfile } from './updateFunction';
 
-import Cover from './booktest.jpg';
-
 export class Profile extends Component {
     constructor(props) {
         super(props)
@@ -17,32 +15,7 @@ export class Profile extends Component {
             email: '',
             address: '',
             phone: '',
-            books:[
-                {
-                    'id': '0',
-                    'name':'Cell Biology',
-                    'author': 'Author 1',
-                    'year': '2000'
-                },
-                {
-                    'id': '1',
-                    'name':'Cell Biology',
-                    'author': 'Author 2',
-                    'year': '2001'
-                },
-                {
-                    'id': '2',
-                    'name':'Cell Biology',
-                    'author': 'Author 3',
-                    'year': '2002'
-                },
-                {
-                    'id': '3',
-                    'name':'Cell Biology',
-                    'author': 'Author 4',
-                    'year': '2003'
-                }
-            ]
+            books:[]
         }
     }
 
@@ -51,11 +24,16 @@ export class Profile extends Component {
         const decoded = jwt_decode(token)
 
         getUserProfile(decoded.identity.id).then(res => {
+            let books = [];
+            for(let i = 7; i < res.length; i++) {
+                books[i] = res[i]
+            }
             this.setState({
                 name: res[2],
                 email: res[3],
                 address: res[4],
-                phone: res[6]
+                phone: res[6],
+                books: books
             })
         })
     }
@@ -73,12 +51,7 @@ export class Profile extends Component {
 
                 <h1 className="profile_title">Books on sale</h1>
                 {this.state.books.map( book =>
-                <Book
-                    key={book.id}
-                    id={book.id}
-                    name={book.name}
-                    image={Cover}
-                  />  
+                    <Book key={book[0]} id={book[0]} name={book[3]} image={book[2]} /> 
                 )}
             </div>
         )

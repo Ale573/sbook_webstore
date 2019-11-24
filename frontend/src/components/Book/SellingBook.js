@@ -75,6 +75,7 @@ export class SellingBook extends Component {
           this.setState({
             success_message: res.data["msg"]
           })
+          this.props.history.push("/dash");
         }
       });
     }

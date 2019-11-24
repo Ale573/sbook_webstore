@@ -138,11 +138,48 @@ def getProfile():
     cursor.execute("SELECT * FROM accounts where userId = '" + str(id) + "'")
     data = cursor.fetchone()
 
+    cursor.execute("SELECT * FROM books where userId = '" + str(id) + "'")
+    booksData = cursor.fetchall()
+
+    data = data + booksData
+
     if data != None:
         return json.dumps(data), 200
 
     else:
         return jsonify({"msg" : "There is no profile."}), 401
+
+# Get Books function
+@app.route("/getBooks", methods = ['POST'])
+def getBooks():
+
+    # Connect database
+    conn = mysql.connect()
+    cursor = conn.cursor()
+
+    # Read data from GUI
+    data = request.get_json()["data"]
+
+    # Saving values
+    book1 = data['book1']
+    book2 = data['book2']
+
+    # Get data from database 
+    cursor.execute("SELECT * FROM books where id = '" + str(book1) + "'")
+    book1 = cursor.fetchone()
+
+    cursor.execute("SELECT * FROM books where id = '" + str(book2) + "'")
+    book2 = cursor.fetchone()
+
+    data = []
+    data.append(book1)
+    data.append(book2)
+
+    if data != None:
+        return json.dumps(data), 200
+
+    else:
+        return jsonify({"msg" : "No recommended books."}), 401
 
 # Selling book function
 @app.route("/sellingBook", methods = ['POST'])
