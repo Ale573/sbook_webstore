@@ -21,6 +21,7 @@ export class SellingBook extends Component {
       cards: false,
 
       error_message: {},
+      success_message: "",
 
       step: 1
     };
@@ -32,36 +33,8 @@ export class SellingBook extends Component {
     });
   };
 
-  offerChange = e => {
-    if (this.state.offer === false) {
-      this.setState({ offer: true });
-    } else {
-      this.setState({ offer: false });
-    }
-  };
-
-  returnChange = e => {
-    if (this.state.return_policy === false) {
-      this.setState({ return_policy: true });
-    } else {
-      this.setState({ return_policy: false });
-    }
-  };
-
-  cashChange = e => {
-    if (this.state.cash === false) {
-      this.setState({ cash: true });
-    } else {
-      this.setState({ cash: false });
-    }
-  };
-
-  cardsChange = e => {
-    if (this.state.cards === false) {
-      this.setState({ cards: true });
-    } else {
-      this.setState({ cards: false });
-    }
+  handleBooleanChange = input => e => {
+    this.setState({ [input]: !this.state[input] });
   };
 
   nextStep = e => {
@@ -83,6 +56,7 @@ export class SellingBook extends Component {
     if (this.validateForm()) {
       const book = {
         userId: decoded.identity.id,
+        image: "book_default.png",
         name: this.state.name,
         author: this.state.author,
         year: this.state.year,
@@ -97,7 +71,11 @@ export class SellingBook extends Component {
       };
 
       sellingBook(book).then(res => {
-        //TODO
+        if(res.status === 200) {
+          this.setState({
+            success_message: res.data["msg"]
+          })
+        }
       });
     }
   };
@@ -269,7 +247,7 @@ export class SellingBook extends Component {
                   type="checkbox"
                   name="offer"
                   id="offer"
-                  onChange={this.offerChange}
+                  onChange={this.handleBooleanChange("offer")}
                 />
                 <label className="checkbox_text" htmlFor="offer">
                   Offer Option
@@ -282,7 +260,7 @@ export class SellingBook extends Component {
                   type="checkbox"
                   name="return_policy"
                   id="return_policy"
-                  onChange={this.returnChange}
+                  onChange={this.handleBooleanChange("return_policy")}
                 />
                 <label className="checkbox_text" htmlFor="return_policy">
                   Return Option
@@ -296,7 +274,7 @@ export class SellingBook extends Component {
                   type="checkbox"
                   name="cash"
                   id="cash"
-                  onChange={this.cashChange}
+                  onChange={this.handleBooleanChange("cash")}
                 />
                 <label className="checkbox_text" htmlFor="cash">
                   Cash
@@ -307,7 +285,7 @@ export class SellingBook extends Component {
                   type="checkbox"
                   name="cards"
                   id="cards"
-                  onChange={this.cardsChange}
+                  onChange={this.handleBooleanChange("cards")}
                 />
                 <label className="checkbox_text" htmlFor="cards">
                   Cards
@@ -332,6 +310,9 @@ export class SellingBook extends Component {
               >
                 Submit
               </button>
+              <p className="success_message">
+                {this.state.success_message}
+              </p>
             </Fragment>
           )}
         </form>

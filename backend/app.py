@@ -157,6 +157,7 @@ def sellingBook():
     
     # Saving values
     userId = data['userId']
+    image = data['image']
     name = data['name']
     author = data['author']
     year = data['year']
@@ -170,12 +171,12 @@ def sellingBook():
     cards = data['cards']
 
     #Save values in the database 
-    query="INSERT INTO books(userId, name, author, year, edition, isbn, price, book_condition, offer, return_policy, cash, cards) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-    cursor.execute(query,(userId, name, author, year, edition, isbn, price, book_condition, offer, return_policy, cash, cards))
+    query="INSERT INTO books(userId, image, name, author, year, edition, isbn, price, book_condition, offer, return_policy, cash, cards) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    cursor.execute(query,(userId, image, name, author, year, edition, isbn, price, book_condition, offer, return_policy, cash, cards))
 
     conn.commit()
 
-    return jsonify({'status': 'Submited'}), 200
+    return jsonify({'msg': 'Book submited!'}), 200
 
 # Search function 
 @app.route("/searchInput", methods = ["POST"])

@@ -64,7 +64,7 @@ class Search extends Component {
             className="input_box"
             type="search"
             id="filter"
-            placeholder="Search for..."
+            placeholder="Book name..."
             onChange={this.handleChange}
             value={this.state.query}
           />
@@ -74,7 +74,7 @@ class Search extends Component {
             type="button"
             onClick={this.onSubmit}
           >
-            Search
+            Go
           </button></Link>
 
           <p className="error_message">{this.state.error_message.query}</p>
