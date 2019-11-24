@@ -9,8 +9,7 @@ export class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      error_message: {},
-      loading: false
+      error_message: {}
     };
   }
 
@@ -20,21 +19,7 @@ export class Login extends Component {
     });
   };
 
-  fetchData = () => {
-    this.setState({
-      loading: true
-    });
-
-    setTimeout(() => {
-      this.setState({
-        loading: false
-      });
-    }, 3000);
-  };
-
   onSubmit = e => {
-    this.fetchData();
-
     if (this.validateForm()) {
       const user = {
         username: this.state.username,
@@ -42,11 +27,14 @@ export class Login extends Component {
       };
 
       login(user).then(res => {
-        if (Auth.getToken()) {
+        if(res.status === 200) {
+          Auth.authenticateUser(res.data);
           this.props.success();
-        } else {
-          let errors = {};
-          errors["invalid"] = "*Invalid username or password.";
+        }
+        else {
+          let errors = {
+            invalid: res.data["msg"]
+          };
           this.setState({
             error_message: errors
           });
@@ -85,7 +73,7 @@ export class Login extends Component {
             className="input_box"
             type="text"
             name="username"
-            onChange={this.handleChange('username')}
+            onChange={this.handleChange("username")}
             value={this.state.username}
           />
           <p className="error_message">{this.state.error_message.username}</p>
@@ -95,26 +83,20 @@ export class Login extends Component {
             className="input_box"
             type="password"
             name="password"
-            onChange={this.handleChange('password')}
+            onChange={this.handleChange("password")}
             value={this.state.password}
           />
           <p className="error_message">{this.state.error_message.password}</p>
 
           <p className="error_message">{this.state.error_message.invalid}</p>
 
-          {this.state.loading ? (
-            <button className="submit_button" type="button">
-              Loading
-            </button>
-          ) : (
-            <button
-              className="submit_button"
-              type="button"
-              onClick={this.onSubmit}
-            >
-              Login
-            </button>
-          )}
+          <button
+            className="submit_button"
+            type="button"
+            onClick={this.onSubmit}
+          >
+            Login
+          </button>
         </form>
       </div>
     );

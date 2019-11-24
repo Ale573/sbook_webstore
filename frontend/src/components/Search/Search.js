@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 
 import { searchInput } from "./searchFunction";
-import SearchResults from "./SearchResults";
+import Viewer from "./Viewer";
 
 class Search extends Component {
   state = {
     query: "",
-    data: [],
+    results: [],
     error_message: {}
   };
 
@@ -43,11 +43,12 @@ class Search extends Component {
       searchInput(this.state.query).then(res => {
         if (res.status === 200) {
           this.setState({
-            data: res.data
+            results: res.data
           });
         } else {
-          let errors = {};
-          errors["query"] = res.data["msg"];
+          let errors = {
+            query: res.data["msg"]
+          };
           this.setState({
             error_message: errors
           });
@@ -80,7 +81,7 @@ class Search extends Component {
           <p className="error_message">{this.state.error_message.query}</p>
 
         </form>
-        <SearchResults data={this.state.data} />
+        <Viewer results={this.state.results} />
       </div>
     );
   }

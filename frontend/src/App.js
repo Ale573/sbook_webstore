@@ -8,8 +8,8 @@ import Dash from './pages/Dash/Dash';
 import Search from './components/Search/Search';
 import Auth from './components/Auth/Auth';
 import Profile from './components/User/Profile';
-import UpdateProfile from './components/User/updateProfile';
-import Selling from './components/Book/SellingBook';
+import EditProfile from './components/User/EditProfile';
+import SellBook from './components/Book/SellBook';
 
 function App() {
 
@@ -31,8 +31,8 @@ function App() {
               <PrivateRoute path='/dash' component={Dash} />
               <PrivateRoute path='/dash/search' component={Search} />
               <PrivateRoute path='/profile' component={Profile} />
-              <PrivateRoute path='/updateProfile' component={UpdateProfile} />
-              <PrivateRoute path='/selling' component={Selling} />
+              <PrivateRoute path='/updateProfile' component={EditProfile} />
+              <PrivateRoute path='/selling' component={SellBook} />
             </Switch>
         </div>
       </div>

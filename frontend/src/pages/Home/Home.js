@@ -62,13 +62,6 @@ export class Home extends Component {
                         }
                     </div>
                 </div>
-
-                <article className="about_container">
-                    {/* TODO */}
-                </article>
-                <article className="features_container">
-                    {/* TODO */}
-                </article>
             </div>
         )
     }

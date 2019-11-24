@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import jwt_decode from "jwt-decode";
-import { sellingBook } from "./sellingFunction";
+import { sellingBook } from "./bookFunctions";
 
 export class SellingBook extends Component {
   constructor(props) {

@@ -9,8 +9,7 @@ export class Register extends Component {
       username: "",
       password: "",
       confirm_password: "",
-      error_message: {},
-      loading: false
+      error_message: {}
     };
   }
 
@@ -20,21 +19,7 @@ export class Register extends Component {
     });
   };
 
-  fetchData = () => {
-    this.setState({
-      loading: true
-    });
-
-    setTimeout(() => {
-      this.setState({
-        loading: false
-      });
-    }, 3000);
-  };
-
   onSubmit = e => {
-    this.fetchData();
-
     if (this.validateForm()) {
       const newUser = {
         username: this.state.username,
@@ -42,7 +27,17 @@ export class Register extends Component {
       };
 
       register(newUser).then(res => {
-        this.props.success();
+        if(res.status === 200) {
+          this.props.success();
+        }
+        else {
+          let errors = {
+            invalid: res.data["msg"]
+          };
+          this.setState({
+            error_message: errors
+          });
+        }
       });
     }
   };
@@ -96,7 +91,7 @@ export class Register extends Component {
             className="input_box"
             type="text"
             name="username"
-            onChange={this.handleChange('username')}
+            onChange={this.handleChange("username")}
             value={this.state.username}
           />
           <p className="error_message">{this.state.error_message.username}</p>
@@ -106,7 +101,7 @@ export class Register extends Component {
             className="input_box"
             type="password"
             name="password"
-            onChange={this.handleChange('password')}
+            onChange={this.handleChange("password")}
             value={this.state.password}
           />
           <p className="error_message">{this.state.error_message.password}</p>
@@ -116,30 +111,21 @@ export class Register extends Component {
             className="input_box"
             type="password"
             name="confirm_password"
-            onChange={this.handleChange('confirm_password')}
+            onChange={this.handleChange("confirm_password")}
             value={this.state.confirm_password}
           />
-          <p className="error_message">
-            {this.state.error_message.confirm_password}
-          </p>
+          <p className="error_message">{this.state.error_message.confirm_password}</p>
 
-          {this.state.loading ? (
-            <button 
-              name="loading_button"
-              className="submit_button" 
-              type="button">
-              Loading
-            </button>
-          ) : (
-            <button
-              name="submit_button"
-              className="submit_button"
-              type="button"
-              onClick={this.onSubmit}
-            >
-              Register
-            </button>
-          )}
+          <p className="error_message">{this.state.error_message.invalid}</p>
+
+          <button
+            name="submit_button"
+            className="submit_button"
+            type="button"
+            onClick={this.onSubmit}
+          >
+            Register
+          </button>
         </form>
       </div>
     );

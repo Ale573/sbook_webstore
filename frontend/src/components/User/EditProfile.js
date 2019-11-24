@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import jwt_decode from "jwt-decode";
-import { updateProfileFunction } from "./updateFunction";
+import { updateProfile } from "./userFunctions";
 
-export class updateProfile extends Component {
+export class EditProfile extends Component {
   constructor(props) {
     super(props);
 
@@ -26,9 +26,10 @@ export class updateProfile extends Component {
     if (this.validateForm()) {
       const token = localStorage.usertoken;
       const decoded = jwt_decode(token);
+      const user_id = decoded.identity.id;
 
       const profile = {
-        userId: decoded.identity.id,
+        userId: user_id,
         name: this.state.name,
         email: this.state.email,
         address: this.state.address,
@@ -36,13 +37,10 @@ export class updateProfile extends Component {
         phone: this.state.phone
       };
 
-      updateProfileFunction(profile).then(res => {
-        this.props.history.push("/dash");
-      });
-    } else {
-      this.setState({
-        error: true,
-        message: "All fields are needed."
+      updateProfile(profile).then(res => {
+        if(res.status === 200) {
+          this.props.history.push("/profile");
+        }
       });
     }
   };
@@ -154,4 +152,4 @@ export class updateProfile extends Component {
   }
 }
 
-export default updateProfile;
+export default EditProfile;

@@ -38,13 +38,24 @@ def register():
     password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
     status = "new"
 
-    # Save values in the database
-    query="INSERT INTO users (username, password, status) VALUES(%s, %s, %s)"
-    cursor.execute(query,(username, password, status))
+    # Check if the username is taken 
+    query = "SELECT * from users where username = %s"
+    cursor.execute(query,(username))
+    result = cursor.fetchone()
 
-    conn.commit()
+    print(result)
 
-    return jsonify({'status': 'Registered'}), 200
+    if(result == None):
+        # Save the user in the database
+        query="INSERT INTO users (username, password, status) VALUES(%s, %s, %s)"
+        cursor.execute(query,(username, password, status))
+
+        conn.commit()
+
+        return jsonify({'status': 'Registered'}), 200
+
+    else:
+        return jsonify({'msg': '*The username already exist.'}), 400
 
 # Login function
 @app.route("/login", methods = ['POST'])
@@ -76,7 +87,7 @@ def login():
         return access_token, 200
 
     else:
-        return jsonify({"msg" : "The users does not exist or the password is wrong."}), 401
+        return jsonify({"msg" : "Invalid username or password."}), 400
 
 
 # Update profile
@@ -147,7 +158,7 @@ def getProfile():
         return json.dumps(data), 200
 
     else:
-        return jsonify({"msg" : "There is no profile."}), 401
+        return jsonify({"msg" : "There is no profile."}), 400
 
 # Get Books function
 @app.route("/getBooks", methods = ['POST'])
@@ -179,7 +190,7 @@ def getBooks():
         return json.dumps(data), 200
 
     else:
-        return jsonify({"msg" : "No recommended books."}), 401
+        return jsonify({"msg" : "No recommended books."}), 400
 
 # Selling book function
 @app.route("/sellingBook", methods = ['POST'])
@@ -237,7 +248,7 @@ def searchInput():
         return json.dumps(data), 200
 
     else:
-        return jsonify({"msg" : "*There is no match."}), 401
+        return jsonify({"msg" : "*There is no match."}), 400
 
 if __name__ == '__main__':
     app.run(debug = True)
