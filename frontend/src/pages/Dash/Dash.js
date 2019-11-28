@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import jwt_decode from 'jwt-decode';
-import Search from '../../components/Search/Search'; 
-import BookList from '../../components/Book/BookList';
-import { getBooks } from './getBooks';
+import Search from '../../search/Search'; 
+import BookList from '../../book/BookList';
+import { getBooks } from './DashActions';
 
 export class Dash extends Component {                  
     constructor(props) {
@@ -18,11 +18,12 @@ export class Dash extends Component {
     componentDidMount() {
         const token = localStorage.usertoken;
         const decoded = jwt_decode(token);
+
         this.setState({
             username: decoded.identity.username
         });
 
-        let list = {
+        const list = {
             book1: 1,
             book2: 2
         };
@@ -48,9 +49,7 @@ export class Dash extends Component {
                     <Fragment>
                         <h1 className="welcome_message">Welcome <span style={span}>{this.state.username}</span>!</h1>
                         <h2 className="recommend_message">Some recommended books:</h2>
-                        {this.state.recom_books.map( book =>
-                            <BookList key={book[0]} id={book[0]} name={book[3]} image={book[2]} /> 
-                        )}
+                        <BookList book_list={this.state.recom_books}/> 
                     </Fragment>    
                 }
             </div>

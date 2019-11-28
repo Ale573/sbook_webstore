@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
-
-import { searchInput } from "./searchFunction";
-import Viewer from "./Viewer";
+import Input from "../app/common/Input/Input";
+import BookList from "../book/BookList";
+import { searchInput } from "./SearchActions";
 
 class Search extends Component {
   state = {
@@ -11,9 +10,10 @@ class Search extends Component {
     error_message: {}
   };
 
-  handleChange = e => {
+  handleFormChange = e => {
+    const { name, value } = e.target;
     this.setState({
-      query: e.target.value
+      [name]: value
     });
   };
 
@@ -34,7 +34,7 @@ class Search extends Component {
   };
 
   onSubmit = e => {
-
+    e.preventDefault();
     if (this.validateForm()) {
       if (this.props.search === false) {
         this.props.searchActive();
@@ -60,28 +60,18 @@ class Search extends Component {
   render() {
     return (
       <div className="search">
-        <form className="search_form">
-          <input
-            className="input_box"
+        <form className="form-container" onSubmit={this.onSubmit}>
+          <Input
             type="search"
-            id="filter"
+            name="query"
+            id="query"
             placeholder="Book name..."
-            onChange={this.handleChange}
+            onChange={this.handleFormChange}
             value={this.state.query}
           />
-
-          <Link to="/dash/search"><button
-            className="submit_button"
-            type="button"
-            onClick={this.onSubmit}
-          >
-            Go
-          </button></Link>
-
-          <p className="error_message">{this.state.error_message.query}</p>
-
+          <p className="error-message">{this.state.error_message.query}</p>
         </form>
-        <Viewer results={this.state.results} />
+        <BookList book_list={this.state.results} />
       </div>
     );
   }

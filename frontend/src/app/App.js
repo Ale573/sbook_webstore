@@ -1,15 +1,14 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import './styles/styles.css';
+import '../styles/styles.css';
 
-import Home from './pages/Home/Home';
-import Header from './components/Header/Header';
-import Dash from './pages/Dash/Dash';
-import Search from './components/Search/Search';
-import Auth from './components/Auth/Auth';
-import Profile from './components/User/Profile';
-import EditProfile from './components/User/EditProfile';
-import SellBook from './components/Book/SellBook';
+import Home from '../pages/Home/Home';
+import Header from './Header';
+import Dash from '../pages/Dash/Dash';
+import Auth from '../auth/Auth';
+import UserProfile from '../user/UserProfile';
+import UserForm from '../user/UserForm';
+import BookForm from '../book/BookForm';
 
 function App() {
 
@@ -29,10 +28,9 @@ function App() {
             <Switch>
               <Route path="/" exact component={Home}/>
               <PrivateRoute path='/dash' component={Dash} />
-              <PrivateRoute path='/dash/search' component={Search} />
-              <PrivateRoute path='/profile' component={Profile} />
-              <PrivateRoute path='/updateProfile' component={EditProfile} />
-              <PrivateRoute path='/selling' component={SellBook} />
+              <PrivateRoute path='/user' component={UserProfile} />
+              <PrivateRoute path='/edit' component={UserForm} />
+              <PrivateRoute path='/sell' component={BookForm} />
             </Switch>
         </div>
       </div>

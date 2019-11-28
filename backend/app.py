@@ -149,6 +149,9 @@ def getProfile():
     cursor.execute("SELECT * FROM accounts where userId = '" + str(id) + "'")
     data = cursor.fetchone()
 
+    if(data == None):
+        return jsonify({"msg" : "There is no profile."}), 400
+
     cursor.execute("SELECT * FROM books where userId = '" + str(id) + "'")
     booksData = cursor.fetchall()
 

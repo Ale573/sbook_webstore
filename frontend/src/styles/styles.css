@@ -139,17 +139,17 @@
   margin: 0px 300px 50px 0px;
 }
 
-.form_container {
+.form-container {
   margin-right: 50px;
 }
 
-.form_container .label_text {
+.form-container .form-label {
   display: block;
   margin: 10px 0px;
   font-size: 1.8em;
 }
 
-.form_container .input_box {
+.form-container .form-input {
   display: block;
   margin: 10px 0px;
   width: 450px;
@@ -160,7 +160,7 @@
   font-size: 1.4em;
 }
 
-.form_container .submit_button {
+.form-container .button {
   float: right;
   margin: 20px 0px;
   border: solid 1px #117c20;
@@ -174,14 +174,15 @@
   cursor: pointer;
 }
 
-.form_container .submit_button:hover {
+.form-container .button:hover {
   background-color: #105c1b;
   color: white;
   border: inset 1.5px black;
 }
 
-.form_container .error_message {
+.form-container .error-message {
   display: block;
+  clear: both;
   color: #f80606;
   background-color: #ffffff80;
   border-radius: 10px;
@@ -202,23 +203,23 @@
   margin-left: 30px;
 }
 
-.book .book_container {
+.book-list .book-container {
   float: left;
   margin: 40px 65px;
   padding: 10px;
   border: 1px solid transparent;
 }
 
-.book .book_container .book_cover {
+.book-list .book-container .book-cover {
   border-radius: 5px;
 }
 
-.book .book_container .book_name {
+.book-list .book-container .book-name {
   text-align: center;
   font-size: 1.3em;
 }
 
-.book .book_container:hover {
+.book-list .book-container:hover {
   border: 1px solid #105c1b;
   border-radius: 10px;
   cursor: pointer;
@@ -240,129 +241,70 @@
   margin: 10px 60px;
 }
 
-.update_profile, .selling_book {
+.update-profile, .selling-book {
   width: 540px;
   margin: 0 auto;
 }
 
-.update_profile .profile_form .label_text, .update_profile .selling_form .label_text, .selling_book .profile_form .label_text, .selling_book .selling_form .label_text {
-  width: 120px;
-  margin: 10px 0px;
-  font-size: 1.7em;
+.selling-book .select-container {
+  border: none;
 }
 
-.update_profile .profile_form .input_box, .update_profile .selling_form .input_box, .selling_book .profile_form .input_box, .selling_book .selling_form .input_box {
-  display: block;
-  margin: 10px 0px;
-  width: 450px;
-  height: 40px;
-  border: solid 1px #105c1b;
-  border-radius: 10px;
-  box-shadow: 1px 1px 8px #1a912c;
-  font-size: 1.4em;
-}
-
-.update_profile .profile_form .submit_button, .update_profile .selling_form .submit_button, .selling_book .profile_form .submit_button, .selling_book .selling_form .submit_button {
+.selling-book .select-container .form-label {
   float: left;
-  margin: 20px 30px 20px 0px;
-  border: solid 1px #117c20;
-  background-color: #117c20;
-  color: white;
-  border: 1.5px solid #117c20;
-  border-radius: 8px;
-  box-shadow: 1px 1px 6px black;
-  padding: 18px 32px;
-  font-size: 1.5em;
-  cursor: pointer;
 }
 
-.update_profile .profile_form .submit_button:hover, .update_profile .selling_form .submit_button:hover, .selling_book .profile_form .submit_button:hover, .selling_book .selling_form .submit_button:hover {
-  background-color: #105c1b;
-  color: white;
-  border: inset 1.5px black;
-}
-
-.update_profile .profile_form .error_message, .update_profile .selling_form .error_message, .selling_book .profile_form .error_message, .selling_book .selling_form .error_message {
+.selling-book .select-container .form-select {
   display: block;
-  color: #f80606;
-  background-color: #ffffff80;
-  border-radius: 10px;
-  font-size: 1.4em;
-}
-
-.selling_book .selling_form .checkbox_division {
-  margin-top: 20px;
-}
-
-.selling_book .selling_form .input_select {
-  width: 120px;
+  float: left;
+  width: 150px;
   height: 30px;
-  margin-left: 20px;
+  margin: 20px;
 }
 
-.selling_book .selling_form .checkbox_text {
-  width: 120px;
-  margin: 10px 0px;
-  font-size: 1.4em;
-}
-
-.selling_book .selling_form .checkbox {
+.selling-book .checkbox-division {
   clear: both;
+}
+
+.selling-book .checkbox-division .form-label {
+  float: left;
+  font-size: 1.3em;
+}
+
+.selling-book .checkbox-division .checkbox {
+  float: left;
   width: 20px;
   height: 20px;
-  margin: 10px 10px;
+  margin: 16px 10px;
   border: solid 1px #105c1b;
   border-radius: 10px;
 }
 
-.selling_book .selling_form .success_message {
+.selling-book .form-label-text {
+  clear: both;
+  margin-top: 80px;
+}
+
+.selling-book .button {
+  margin-top: 40px;
+  margin-right: 20px;
+}
+
+.selling-book .success_message {
   width: 200px;
   float: left;
   font-size: 1.5em;
 }
 
-.search .search_form {
-  width: 680px;
+.search .form-container {
+  width: 550px;
   height: 120px;
   margin: 20px auto;
 }
 
-.search .search_form .input_box {
+.search .form-input {
   display: block;
   float: left;
-  margin: 5px 20px 0px 0px;
   width: 500px;
-  height: 50px;
-  border: solid 1px #105c1b;
-  border-radius: 10px;
-  box-shadow: 1px 1px 8px #1a912c;
-  font-size: 1.4em;
-}
-
-.search .search_form .submit_button {
-  float: left;
-  margin-right: 30px;
-  border: solid 1px #117c20;
-  background-color: #117c20;
-  color: white;
-  border: 1.5px solid #117c20;
-  border-radius: 8px;
-  box-shadow: 1px 1px 6px black;
-  padding: 18px 32px;
-  font-size: 1.2em;
-  cursor: pointer;
-}
-
-.search .search_form .submit_button:hover {
-  background-color: #105c1b;
-  color: white;
-  border: inset 1.5px black;
-}
-
-.search .search_form .error_message {
-  display: block;
-  color: #f80606;
-  background-color: #ffffff80;
-  border-radius: 10px;
-  font-size: 1.4em;
+  margin: 5px 20px 0px 0px;
 }

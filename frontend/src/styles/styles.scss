@@ -157,18 +157,17 @@
     
 }
 
-//Login and Register Component CSS
-.form_container {
-
+//Form CSS
+.form-container {
     margin-right: 50px;
 
-    .label_text {
+    .form-label {
         display: block;
         margin: 10px 0px;
         font-size: 1.8em;
     }
 
-    .input_box {
+    .form-input {
         display: block;
         margin: 10px 0px;
         width: 450px;
@@ -179,7 +178,7 @@
         font-size: 1.4em;
     }
 
-    .submit_button {
+    .button {
         float: right;
         margin: 20px 0px;
         border: solid 1px #117c20;
@@ -193,14 +192,15 @@
         cursor: pointer;
     }
     
-    .submit_button:hover {
+    .button:hover {
         background-color:  #105c1b;
         color: white;
         border: inset 1.5px black;
     }
 
-    .error_message {
+    .error-message {
         display: block;
+        clear: both;
         color: #f80606;
         background-color: #ffffff80;
 
@@ -225,24 +225,24 @@
 }
 
 //Book CSS
-.book {
-    .book_container {
+.book-list {
+    .book-container {
         float: left;
         margin: 40px 65px;
         padding: 10px;
         border: 1px solid transparent;
     
-        .book_cover {
+        .book-cover {
             border-radius: 5px;
         }
     
-        .book_name {
+        .book-name {
             text-align: center;
             font-size: 1.3em;
         }
     }
     
-    .book_container:hover {
+    .book-container:hover {
         border: 1px solid #105c1b;
         border-radius: 10px;
         cursor: pointer;
@@ -270,148 +270,78 @@
 }
 
 //Update Profile CSS
-.update_profile, .selling_book {
+.update-profile, .selling-book {
     width: 540px;
     margin: 0 auto;
-
-    .profile_form, .selling_form {
-        
-        .label_text {
-            width: 120px;
-            margin: 10px 0px;
-            font-size: 1.7em;
-        }
-
-        .input_box {
-            display: block;
-            margin: 10px 0px;
-            width: 450px;
-            height: 40px;
-            border: solid 1px #105c1b;
-            border-radius: 10px;
-            box-shadow: 1px 1px 8px #1a912c;
-            font-size: 1.4em;
-        }
-
-        .submit_button {
-            float: left;
-            margin: 20px 30px 20px 0px;
-            border: solid 1px #117c20;
-            background-color: #117c20;
-            color: white;
-            border: 1.5px solid #117c20;
-            border-radius: 8px;
-            box-shadow: 1px 1px 6px black;
-            padding: 18px 32px;
-            font-size: 1.5em;
-            cursor: pointer;
-        }
-        
-        .submit_button:hover {
-            background-color:  #105c1b;
-            color: white;
-            border: inset 1.5px black;
-        }
-
-        .error_message {
-            display: block;
-            color: #f80606;
-            background-color: #ffffff80;
-    
-            border-radius: 10px;
-    
-            font-size: 1.4em;
-        }
-    }
 }
 
 //Selling Book CSS
-.selling_book {
+.selling-book {
 
-    .selling_form {
+    .select-container {
+        border: none;
 
-        .checkbox_division {
-            margin-top: 20px;
+        .form-label {
+            float: left;
         }
 
-        .input_select {
-            width: 120px;
+        .form-select {
+            display: block;
+            float: left;
+            width: 150px;
             height: 30px;
-            margin-left: 20px;
+            margin: 20px;
+        }
+    }
+
+    .checkbox-division {
+        clear: both;
+
+        .form-label {
+            float: left;
+            font-size: 1.3em;
         }
 
-        .checkbox_text {
-            width: 120px;
-            margin: 10px 0px;
-            font-size: 1.4em;
-        }
-       
         .checkbox {
-            clear: both;
+            float: left;
             width: 20px;
             height: 20px;
-            margin: 10px 10px;
+            margin: 16px 10px;
             border: solid 1px #105c1b;
             border-radius: 10px;
         }
+    }
 
-        .success_message {
-            width: 200px;
-            float: left;
+    .form-label-text {
+        clear: both;
+        margin-top: 80px;
+    }
 
-            font-size: 1.5em;
-        }
+    .button {
+        margin-top: 40px;
+        margin-right: 20px;
+    }
+
+    .success_message {
+        width: 200px;
+        float: left;
+
+        font-size: 1.5em;
     }
 }
 
 // Search CSS
 .search {
-
-    .search_form {
-        width: 680px;
+    .form-container {
+        width: 550px;
         height: 120px;;
         margin: 20px auto;
-        
-        .input_box {
-            display: block;
-            float: left;
-            margin: 5px 20px 0px 0px;
-            width: 500px;
-            height: 50px;
-            border: solid 1px #105c1b;
-            border-radius: 10px;
-            box-shadow: 1px 1px 8px #1a912c;
-            font-size: 1.4em;
-        }
+    }
 
-        .submit_button {
-            float: left;
-            margin-right: 30px;
-            border: solid 1px #117c20;
-            background-color: #117c20;
-            color: white;
-            border: 1.5px solid #117c20;
-            border-radius: 8px;
-            box-shadow: 1px 1px 6px black;
-            padding: 18px 32px;
-            font-size: 1.2em;
-            cursor: pointer;
-        }
-        
-        .submit_button:hover {
-            background-color:  #105c1b;
-            color: white;
-            border: inset 1.5px black;
-        }
-
-        .error_message {
-            display: block;
-            color: #f80606;
-            background-color: #ffffff80;
-    
-            border-radius: 10px;
-    
-            font-size: 1.4em;
-        }
+    .form-input {
+        display: block;
+        float: left;
+        width: 500px;
+        margin: 5px 20px 0px 0px;
     }
 }

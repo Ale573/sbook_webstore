@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import jwt_decode from "jwt-decode";
-import { updateProfile } from "./userFunctions";
+import Input from "../app/common/Input/Input";
+import Button from "../app/common/Button/Button";
+import { updateProfile } from "./UserActions";
 
-export class EditProfile extends Component {
+export class UserForm extends Component {
   constructor(props) {
     super(props);
 
@@ -16,13 +18,15 @@ export class EditProfile extends Component {
     };
   }
 
-  handleChange = input => e => {
+  handleFormChange = e => {
+    const {name, value} = e.target
     this.setState({
-      [input]: e.target.value
+      [name]: value
     });
   };
 
   onSubmit = e => {
+    e.preventDefault();
     if (this.validateForm()) {
       const token = localStorage.usertoken;
       const decoded = jwt_decode(token);
@@ -83,73 +87,65 @@ export class EditProfile extends Component {
 
   render() {
     return (
-      <div className="update_profile">
-        <h1 className="header_title">Update your profile!</h1>
+      <div className="update-profile">
+        <h1 className="header-title">Update your profile!</h1>
 
-        <form className="profile_form">
-          <label className="label_text">Name</label>
-          <input
-            className="input_box"
-            type="text"
-            name="name"
-            onChange={this.handleChange("name")}
+        <form className="form-container" onSubmit={this.onSubmit}>
+          <Input
+            type={"text"}
+            title={"Name"}
+            name={"name"}
             value={this.state.name}
+            placeholder={"Enter your name"}
+            onChange={this.handleFormChange}
           />
-          <p className="error_message">{this.state.error_message.name}</p>
+          <p className="error-message">{this.state.error_message.name}</p>
 
-          <label className="label_text">Email</label>
-          <input
-            className="input_box"
-            type="email"
-            name="email"
-            onChange={this.handleChange("email")}
+          <Input
+            type={"email"}
+            title={"Email"}
+            name={"email"}
             value={this.state.email}
+            placeholder={"Enter your email"}
+            onChange={this.handleFormChange}
           />
-          <p className="error_message">{this.state.error_message.email}</p>
+          <p className="error-message">{this.state.error_message.email}</p>
 
-          <label className="label_text">Address</label>
-          <input
-            className="input_box"
-            type="text"
-            name="address"
-            onChange={this.handleChange("address")}
+          <Input
+            type={"text"}
+            title={"Address"}
+            name={"address"}
             value={this.state.address}
+            placeholder={"Enter your address"}
+            onChange={this.handleFormChange}
           />
-          <p className="error_message">{this.state.error_message.address}</p>
+          <p className="error-message">{this.state.error_message.address}</p>
 
-          <label className="label_text">Billing Address</label>
-          <input
-            className="input_box"
-            type="text"
-            name="billing_address"
-            onChange={this.handleChange("billing_address")}
+          <Input
+            type={"text"}
+            title={"Billing Address"}
+            name={"billing_address"}
             value={this.state.billing_address}
+            placeholder={"Enter your billing address"}
+            onChange={this.handleFormChange}
           />
-          <p className="error_message">
-            {this.state.error_message.billing_address}
-          </p>
+          <p className="error-message">{this.state.error_message.billing_address}</p>
 
-          <label className="label_text">Phone Number</label>
-          <input
-            className="input_box"
-            type="text"
-            name="phone"
-            onChange={this.handleChange("phone")}
+          <Input
+            type={"text"}
+            title={"Phone"}
+            name={"phone"}
             value={this.state.phone}
+            placeholder={"Enter your phone number"}
+            onChange={this.handleFormChange}
           />
-          <p className="error_message">{this.state.error_message.phone}</p>
+          <p className="error-message">{this.state.error_message.phone}</p>
 
-          <button
-            className="submit_button"
-            type="button"
-            onClick={this.onSubmit}
-          >
-            Update
-          </button>
+          <Button title={"Update"} type={"button"} className={"button"} action={this.onSubmit}></Button>
         </form>
       </div>
     );
   }
 }
 
-export default EditProfile;
+export default UserForm;

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { login } from "./userLogin";
-import Auth from "../Auth/Auth";
+import { login } from "./LoginActions";
+import Auth from "../auth/Auth";
+import Input from "../app/common/Input/Input";
+import Button from "../app/common/Button/Button";
 
 export class Login extends Component {
   constructor(props) {
@@ -13,13 +15,15 @@ export class Login extends Component {
     };
   }
 
-  handleChange = input => e => {
+  handleFormChange = e => {
+    const { name, value } = e.target;
     this.setState({
-      [input]: e.target.value
+      [name]: value
     });
   };
 
   onSubmit = e => {
+    e.preventDefault();
     if (this.validateForm()) {
       const user = {
         username: this.state.username,
@@ -27,11 +31,10 @@ export class Login extends Component {
       };
 
       login(user).then(res => {
-        if(res.status === 200) {
+        if (res.status === 200) {
           Auth.authenticateUser(res.data);
           this.props.success();
-        }
-        else {
+        } else {
           let errors = {
             invalid: res.data["msg"]
           };
@@ -66,39 +69,31 @@ export class Login extends Component {
 
   render() {
     return (
-      <div className="form_container">
-        <form>
-          <label className="label_text">Username</label>
-          <input
-            className="input_box"
-            type="text"
-            name="username"
-            onChange={this.handleChange("username")}
+        <form className="form-container" onSubmit={this.onSubmit}>
+          <Input
+            type={"text"}
+            title={"Username"}
+            name={"username"}
             value={this.state.username}
+            placeholder={"Enter your username"}
+            onChange={this.handleFormChange}
           />
-          <p className="error_message">{this.state.error_message.username}</p>
+          <p className="error-message">{this.state.error_message.username}</p>
 
-          <label className="label_text">Password</label>
-          <input
-            className="input_box"
-            type="password"
-            name="password"
-            onChange={this.handleChange("password")}
+          <Input
+            type={"password"}
+            title={"Password"}
+            name={"password"}
             value={this.state.password}
+            placeholder={"Enter your password"}
+            onChange={this.handleFormChange}
           />
-          <p className="error_message">{this.state.error_message.password}</p>
+          <p className="error-message">{this.state.error_message.password}</p>
 
-          <p className="error_message">{this.state.error_message.invalid}</p>
+          <p className="error-message">{this.state.error_message.invalid}</p>
 
-          <button
-            className="submit_button"
-            type="button"
-            onClick={this.onSubmit}
-          >
-            Login
-          </button>
+          <Button title={"Login"} type={"button"} className={"button"} action={this.onSubmit}></Button>
         </form>
-      </div>
     );
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import {Link, withRouter} from 'react-router-dom';
-import Auth from '../Auth/Auth';
-
+import Auth from '../auth/Auth';
+import Button from './common/Button/Button';
 import Logo from './images/book_icon.png';
 import UserIcon from './images/user_logo.png';
 
@@ -40,17 +40,17 @@ export class Header extends Component {
                                 height="65"
                                 width="65"/>
                             <div className="dropdown-content">
-                                <Link to="/profile" className="link">Profile</Link>
+                                <Link to="/user" className="link">Profile</Link>
                                 <Link to="" className="link" onClick={this.handleLogout}>Logout</Link>
                             </div>
                         </div>
 
-                        <Link to="/selling">
-                            <button
-                                className="button"
-                                type="button">
-                                Sell
-                            </button>
+                        <Link to="/sell">
+                            <Button
+                                title={"Sell"}
+                                type={"button"}
+                                className={"button"}>
+                            </Button>
                         </Link>
                     </Fragment>
                 : 

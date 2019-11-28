@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { register } from "./userRegister";
+import Input from "../app/common/Input/Input";
+import Button from "../app/common/Button/Button";
+import { register } from "./RegisterActions";
 
 export class Register extends Component {
   constructor(props) {
@@ -13,13 +15,15 @@ export class Register extends Component {
     };
   }
 
-  handleChange = input => e => {
+  handleFormChange = e => {
+    const {name, value} = e.target
     this.setState({
-      [input]: e.target.value
+      [name]: value
     });
   };
 
   onSubmit = e => {
+    e.preventDefault();
     if (this.validateForm()) {
       const newUser = {
         username: this.state.username,
@@ -84,50 +88,41 @@ export class Register extends Component {
 
   render() {
     return (
-      <div className="form_container">
-        <form>
-          <label className="label_text">Username</label>
-          <input
-            className="input_box"
-            type="text"
-            name="username"
-            onChange={this.handleChange("username")}
+        <form className="form-container" onSubmit={this.onSubmit}>
+        <Input
+            type={"text"}
+            title={"Username"}
+            name={"username"}
             value={this.state.username}
+            placeholder={"Enter your username"}
+            onChange={this.handleFormChange}
           />
-          <p className="error_message">{this.state.error_message.username}</p>
+          <p className="error-message">{this.state.error_message.username}</p>
 
-          <label className="label_text">Password</label>
-          <input
-            className="input_box"
-            type="password"
-            name="password"
-            onChange={this.handleChange("password")}
+          <Input
+            type={"password"}
+            title={"Password"}
+            name={"password"}
             value={this.state.password}
+            placeholder={"Enter your password"}
+            onChange={this.handleFormChange}
           />
-          <p className="error_message">{this.state.error_message.password}</p>
+          <p className="error-message">{this.state.error_message.password}</p>
 
-          <label className="label_text">Confirm Password</label>
-          <input
-            className="input_box"
-            type="password"
-            name="confirm_password"
-            onChange={this.handleChange("confirm_password")}
+          <Input
+            type={"password"}
+            title={"Confirm Password"}
+            name={"confirm_password"}
             value={this.state.confirm_password}
+            placeholder={"Enter your password"}
+            onChange={this.handleFormChange}
           />
-          <p className="error_message">{this.state.error_message.confirm_password}</p>
+          <p className="error-message">{this.state.error_message.confirm_password}</p>
 
-          <p className="error_message">{this.state.error_message.invalid}</p>
+          <p className="error-message">{this.state.error_message.invalid}</p>
 
-          <button
-            name="submit_button"
-            className="submit_button"
-            type="button"
-            onClick={this.onSubmit}
-          >
-            Register
-          </button>
+          <Button title={"Register"} type={"button"} className={"button"} action={this.onSubmit}></Button>
         </form>
-      </div>
     );
   }
 }

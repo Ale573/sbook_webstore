@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
 import { Link } from 'react-router-dom';
 
-import BookList from '../Book/BookList';
-import { getUserProfile } from './userFunctions';
+import BookList from '../book/BookList';
+import { getUserProfile } from './UserActions';
 
 export class Profile extends Component {
     constructor(props) {
@@ -45,7 +45,7 @@ export class Profile extends Component {
         return (
             <div className="profile">
                 <div className="user_profile">
-                    <h1 className="profile_title">Profile: <Link className="user_link" to="/updateProfile">Edit</Link></h1>
+                    <h1 className="profile_title">Profile: <Link className="user_link" to="/edit">Edit</Link></h1>
                     <h2 className="user_profile_item">Name: {this.state.name}</h2>
                     <h2 className="user_profile_item">Email: {this.state.email}</h2>
                     <h2 className="user_profile_item">Address: {this.state.address}</h2>
@@ -53,9 +53,7 @@ export class Profile extends Component {
                 </div>
 
                 <h1 className="profile_title">Books on sale:</h1>
-                {this.state.books.map( book =>
-                    <BookList key={book[0]} id={book[0]} name={book[3]} image={book[2]} /> 
-                )}
+                <BookList book_list={this.state.books} /> 
             </div>
         )
     }
