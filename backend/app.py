@@ -216,10 +216,10 @@ def sellingBook():
     isbn = data['isbn']
     price = data['price']
     book_condition = data['condition']
-    offer = data['offer']
-    return_policy = data['return_policy']
-    cash = data['cash']
-    cards = data['cards']
+    offer = data['offer_option']
+    return_policy = data['return_option']
+    cash = data['cash_method']
+    cards = data['cards_method']
 
     #Save values in the database 
     query="INSERT INTO books(userId, image, name, author, year, edition, isbn, price, book_condition, offer, return_policy, cash, cards) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"

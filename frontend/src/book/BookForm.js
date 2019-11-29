@@ -74,10 +74,10 @@ export class BookForm extends Component {
         isbn: this.state.isbn,
         price: this.state.price,
         condition: this.state.condition,
-        offer: this.state.offer,
-        return_policy: this.state.return_policy,
-        cash: this.state.cash,
-        cards: this.state.cards
+        offer_option: this.state.offer_option,
+        return_option: this.state.return_option,
+        cash_method: this.state.cash_method,
+        cards_method: this.state.cards_method
       };
 
       sellingBook(book).then(res => {
