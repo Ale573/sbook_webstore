@@ -47,7 +47,7 @@ export class Dash extends Component {
                 <Search search={this.state.search} searchActive={this.searchActive}/>
                 {this.state.search === false &&
                     <Fragment>
-                        <h1 className="welcome_message">Welcome <span style={span}>{this.state.username}</span>!</h1>
+                        <h1 id="welcome" className="welcome_message">Welcome <span style={span}>{this.state.username}</span>!</h1>
                         <h2 className="recommend_message">Some recommended books:</h2>
                         <BookList book_list={this.state.recom_books}/> 
                     </Fragment>    
