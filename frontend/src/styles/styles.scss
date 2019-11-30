@@ -239,6 +239,7 @@
         .book-name {
             text-align: center;
             font-size: 1.3em;
+            color: #000000;
         }
     }
     
@@ -343,5 +344,89 @@
         float: left;
         width: 500px;
         margin: 5px 20px 0px 0px;
+    }
+}
+
+.book-profile-container {
+    width: 1100px;
+    margin:0 auto;
+
+    .book-name {
+        margin-left: 20px;
+        font-size: 2.7em;
+        color: #117c20;
+    }
+
+    .book-cover {
+        float: left;
+        margin-left: 40px;
+        border-radius: 10px;
+    }
+
+    .book-sell-container {
+        display: block;
+        float: left;
+        width: 600px;
+        padding: 10px 20px;
+        margin-left: 50px;
+
+        border: 1px solid #117c20;
+        border-radius: 20px;
+
+        .book-price {
+            font-size: 2em;
+        }
+
+        .book-seller {
+            font-size: 1.6em;
+        }
+
+        .book-sell-info {
+            line-height: 10px;
+        }
+
+        .button {
+            float: right;
+            margin: 20px 20px;
+            border: solid 1.5px #117c20;
+            background-color: #117c20;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 1px 1px 6px black;
+            padding: 18px 32px;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        
+        .button:hover {
+            background-color:  #105c1b;
+            color: white;
+            border: inset 1.5px black;
+        }
+    }
+
+    .book-info-container {
+        width: 700px;
+        margin-left: 40px;
+        float: left;
+        clear: both;
+
+        .book-info-title {
+            font-size: 2em;
+            color: #117c20;
+            
+        }
+
+        .book-info {
+            font-size: 1.4em;
+        }
+    }
+
+    .book-condition-container {
+        width: 300px;
+        margin-top: 68px;
+        margin-left: 40px;
+        float: left;
+        color: #117c20;
     }
 }
