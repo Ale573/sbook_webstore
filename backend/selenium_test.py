@@ -37,7 +37,7 @@ class SbookWebstoreTest(unittest.TestCase):
 
         time.sleep(2)
 
-       assert "/dash" in driver.current_url
+        assert "/dash" in driver.current_url
 
     def test_login(self):
         driver = self.driver
